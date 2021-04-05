@@ -26,7 +26,7 @@ export class AssignmentDetailComponent implements OnInit {
   getAssignmentById(): void {
     // les params sont des string, on va forcer la conversion
     // en number en mettant un "+" devant
-    const id: number = +this.route.snapshot.params.id
+    const id = this.route.snapshot.params.id
 
     console.log('Dans ngOnInit de details, id = ' + id)
     this.assignmentsService.getAssignment(id)
@@ -67,7 +67,7 @@ export class AssignmentDetailComponent implements OnInit {
   }
 
   onClickEdit(): void {
-    this.router.navigate(['/assignment', this.assignmentTransmis.id, 'edit'], {
+    this.router.navigate(['/assignment', this.assignmentTransmis._id, 'edit'], {
       queryParams: {
         nom: 'Michel Buffa',
         metier: 'Professeur',
@@ -75,9 +75,5 @@ export class AssignmentDetailComponent implements OnInit {
       },
       fragment: 'edition'
     });
-  }
-
-  isAdmin(): boolean {
-    return this.authService.admin
   }
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
-import { Assignment } from '../@core/schema/assignment.model'
-import { AssignmentsService } from '../@core/service/assignments.service'
+import { Assignment } from 'src/app/@core/schema/assignment.model'
+import { AssignmentsService } from 'src/app/@core/service/assignments.service'
+
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
@@ -88,7 +89,6 @@ export class AssignmentsComponent implements OnInit {
       }
     })
   }
-
 
   pagePrecedente(): void {
     this.router.navigate(['/home'], {

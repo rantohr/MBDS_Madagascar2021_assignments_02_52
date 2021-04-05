@@ -3,8 +3,10 @@
     <a routerLink="/home">{{title}}</a>
   </nav>
 </h1>
-<mat-slide-toggle (click)="login()">Log me!</mat-slide-toggle>
+<!-- <mat-slide-toggle (click)="login()">Log me!</mat-slide-toggle> -->
 <button mat-stroked-button color="primary" (click)="peuplerBD()">PeuplerBD</button>
+
+<button mat-stroked-button color="primary" (click)="logout()">Se déconnecter</button>
 
 <!-- Indique qu'on affichera le composant qui correspond à l'URL courant -->
 <router-outlet></router-outlet>

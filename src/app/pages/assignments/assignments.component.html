@@ -23,7 +23,7 @@
 
   <mat-list *ngFor="let a of assignments">
     <nav>
-      <a routerLink="/assignment/{{a.id}}">
+      <a routerLink="/assignment/{{a._id}}">
         <h3 mat-subheader>{{a.dateDeRendu | date}}</h3>
         <mat-list-item>
           <mat-divider></mat-divider>

@@ -14,6 +14,7 @@ export class AppComponent {
     private authService: AuthService, private router: Router,
     private assignmentsService: AssignmentsService) { }
 
+  /*
   login(): void {
     // si je suis pas loggé, je me loggue, sinon, si je suis
     // loggé je me déloggue et j'affiche la page d'accueil
@@ -29,6 +30,7 @@ export class AppComponent {
       this.authService.logIn('admin', 'toto')
     }
   }
+  */
 
   peuplerBD(): void {
     // version naive et simple
@@ -41,5 +43,10 @@ export class AppComponent {
         console.log('LA BD A ETE PEUPLEE, TOUS LES ASSIGNMENTS AJOUTES, ON RE-AFFICHE LA LISTE')
         this.router.navigate(['/home'], { replaceUrl: true })
       })
+  }
+
+  logout(): void {
+    this.authService.clearTokens();
+    this.router.navigate(['/login']);
   }
 }
