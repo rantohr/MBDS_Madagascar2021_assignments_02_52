@@ -1,8 +1,8 @@
 <div class="container-fluid bg-primary h-100 align-items-center justify-content-center d-flex login-wrapper">
-    <img src="assets/hall.jpg" alt="" class="bg-image">
+    <img src="assets/login-bg.jpg" alt="" class="bg-image">
     <mat-card class="shadow-lg" style="z-index: 1;">
-        <div class="p-4">
-            <img src="assets/logo.PNG" alt="" width="315px">
+        <div class="p-4 align-items-center justify-content-center d-flex">
+            <img src="assets/logo.png" alt="" width="150em">
         </div>
 
         <div [ngSwitch]="mode">
@@ -32,7 +32,11 @@
                             *ngIf="!loading">SE CONNECTER</button>
                     </mat-card-actions>
                     <p class="text-danger text-center">{{errorMessage ? errorMessage : ''}}</p>
-                    <button mat-button color="accent" (click)="onSwitch(displayMode.Register)">S'inscrire</button>
+                    
+                    <hr>
+                    <div class="align-items-center justify-content-center d-flex">
+                        <button mat-button color="accent" (click)="onSwitch(displayMode.Register)">S'inscrire</button>
+                    </div>
                 </form>
             </div>
 
@@ -80,7 +84,12 @@
                     </mat-card-actions>
                     
                     <p class="text-danger text-center">{{errorMessage ? errorMessage : ''}}</p>
-                    <button mat-button color="accent" (click)="onSwitch(displayMode.Login)">Se connecter</button>
+
+                    
+                    <hr>
+                    <div class="align-items-center justify-content-center d-flex">
+                        <button mat-button color="accent" (click)="onSwitch(displayMode.Login)">Se connecter</button>
+                    </div>
 
                 </form>
             </div>

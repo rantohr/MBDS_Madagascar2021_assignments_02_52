@@ -23,6 +23,14 @@ tasks:
 .notification (snackbar)
 .(bcp de travail) Collection d'élèves et de profs pour faciliter l'association devoir/élève et matières/profs ?????
 .Heroku
+.Error Code
 
 notes: 
     *Les formulaires d'ajout et de détails proposeront un choix fixe de matières (et associeront automatiquement le prof et l'image illustrant la matière)
+
+
+sources:
+https://unsplash.com/s/photos/task-list
+
+
+navigation: rendu - non rendu - ajouter - deco

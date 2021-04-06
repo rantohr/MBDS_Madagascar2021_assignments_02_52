@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { RenduDirective } from './@shared/rendu.directive';
 import { NonRenduDirective } from './@shared/non-rendu.directive';
@@ -32,18 +33,22 @@ import { AuthService } from './@core/service/auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TokenInterceptor } from './@core/service/http-interceptors/token-interceptor';
+import { NavbarComponent } from './@shared/navbar/navbar.component';
+import { NotificationComponent } from './@shared/notification/notification.component';
 
 const routes: Routes = [
   {
     // indique que http://localhost:4200 sans rien ou avec un "/" à la fin
     // doit afficher le composant AssignmentsComponent (celui qui affiche la liste)
     path: '',
-    component: AssignmentsComponent
+    component: AssignmentsComponent,
+    canActivate: [AuthGuard]
   },
   {
     // idem avec  http://localhost:4200/home
     path: 'home',
-    component: AssignmentsComponent
+    component: AssignmentsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'add',
@@ -79,14 +84,16 @@ const routes: Routes = [
     AssignmentDetailComponent,
     AddAssignmentComponent,
     EditAssigmentComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent,
+    NotificationComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatDividerModule, MatDatepickerModule,
+    MatDividerModule, MatDatepickerModule, MatSnackBarModule,
     MatNativeDateModule, MatListModule, MatCheckboxModule,
     MatCardModule, MatIconModule, MatButtonModule, MatFormFieldModule,
     MatInputModule, MatSlideToggleModule, MatProgressSpinnerModule,
