@@ -1,0 +1,27 @@
+.assignment-card {
+    max-width: 350px;
+    cursor   : pointer;
+    margin-bottom: 1em;
+}
+
+.assignment-card span {
+    vertical-align: bottom;
+}
+
+.assignment-card i {
+    margin-left: 5px;
+}
+
+.assignment-card-footer {
+    display: flex;
+}
+
+.assignment-card-footer p {
+    margin-bottom: 0px;
+}
+
+.teacher-avatar {
+    left    : 70%;
+    position: absolute;
+    top     : 44%;
+}

@@ -1,8 +1,14 @@
 .container {
-  display: flex;
+  display       : flex;
   flex-direction: column;
 }
 
 .ajouterBtn {
   align-self: flex-end;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 10px;
 }

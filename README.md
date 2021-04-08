@@ -36,4 +36,9 @@ https://www.bmc.com/blogs/dbms-database-management-systems/
 https://www.businessofapps.com/insights/essentials-of-mobile-app-development-lifecycle-that-appreneurs-must-know/
 https://webfoundation.org/2017/03/web-turns-28-letter/
 
+Design :
+https://codepen.io/JavaScriptJunkie/pen/WgRBxw
+https://codepen.io/FrankieDoodie/pen/NOJpVX
+https://codepen.io/benknight/pen/zxxeay
+
 navigation: rendu - non rendu - ajouter - deco

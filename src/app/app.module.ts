@@ -15,6 +15,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { RenduDirective } from './@shared/rendu.directive';
 import { NonRenduDirective } from './@shared/non-rendu.directive';
@@ -35,6 +37,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TokenInterceptor } from './@core/service/http-interceptors/token-interceptor';
 import { NavbarComponent } from './@shared/navbar/navbar.component';
 import { NotificationComponent } from './@shared/notification/notification.component';
+import { AvatarModule } from 'ngx-avatar';
+import { AssignmentCardComponent } from './pages/assignments/assignment-card/assignment-card.component';
 
 const routes: Routes = [
   {
@@ -86,19 +90,21 @@ const routes: Routes = [
     EditAssigmentComponent,
     LoginComponent,
     NavbarComponent,
-    NotificationComponent
+    NotificationComponent,
+    AssignmentCardComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatDividerModule, MatDatepickerModule, MatSnackBarModule,
-    MatNativeDateModule, MatListModule, MatCheckboxModule,
+    MatDividerModule, MatDatepickerModule, MatSnackBarModule, MatChipsModule,
+    MatNativeDateModule, MatListModule, MatCheckboxModule, MatTabsModule,
     MatCardModule, MatIconModule, MatButtonModule, MatFormFieldModule,
     MatInputModule, MatSlideToggleModule, MatProgressSpinnerModule,
     RouterModule.forRoot(routes), HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AvatarModule
   ],
   providers: [
     AuthService,

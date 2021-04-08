@@ -1,5 +1,63 @@
+<app-navbar></app-navbar>
 <div class="container">
-  <mat-card *ngIf="assignmentTransmis">
+  <!-- titre, la date, l'élève, Note sur 20, rendu, Matière, image matière, prof nom, photo prof, Remarques,  -->
+
+  <div class="card-detail">
+    <div class="card-detail-item swiper-slide">
+
+      <div class="card-detail-img">
+        <img src="https://s7280.pcdn.co/wp-content/uploads/2016/06/database-blue.png" alt="">
+        <p style="font-size: 20px; text-align: center;"> <b>Matière : </b> Mean Stack</p>
+      </div>
+
+      <div class="card-detail-content">
+        <div class="card-detail-title">Angular Material</div>
+        <span class="card-detail-code">08/04/2021</span>
+
+        <h5 class="divider line razor" contenteditable>Note</h5>
+        <div class="card-detail-text">
+          <b>Elève : </b> Elon Musk
+        </div>
+
+        <div class="card-detail-text" style="display: flex;">
+          <b>Note : </b>
+          <p style="margin-left: 10px;">15/20</p>
+          <mat-chip-list style="margin-left: 10px;">
+            <mat-chip color="primary" selected>Rendu</mat-chip>
+          </mat-chip-list>
+        </div>
+
+        <!-- <div class="card-detail-text">
+          <mat-chip-list>
+            <mat-chip color="warn" selected>Non Rendu</mat-chip>
+          </mat-chip-list>
+        </div> -->
+
+        <div class="card-detail-text">
+          <b>Remarques : </b>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate
+          repellendus magni illo ea animi?
+        </div>
+
+        <br>
+        <h5 class="divider line razor" contenteditable>Professeur</h5>
+
+        <!-- profile -->
+        <div class="teacher-profile">
+          <div class="picture">
+            <img class="img-fluid" src="https://picsum.photos/130/130?image=1027">
+          </div>
+          <div>
+            <h3 class="name">Michele Miller</h3>
+          </div>
+        </div>
+        <!-- END profile -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <mat-card *ngIf="assignmentTransmis">
     <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
     <mat-card-subtitle>{{assignmentTransmis.dateDeRendu | date}}</mat-card-subtitle>
     <div id="bottom">
@@ -15,5 +73,5 @@
 
       <button mat-stroked-button color="warn" (click)="onDelete()">DELETE</button>
     </div>
-  </mat-card>
+  </mat-card> -->
 </div>
