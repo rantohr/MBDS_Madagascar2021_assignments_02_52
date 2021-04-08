@@ -24,6 +24,7 @@ tasks:
 .(bcp de travail) Collection d'élèves et de profs pour faciliter l'association devoir/élève et matières/profs ?????
 .Heroku
 .Error Code
+.Video
 
 notes: 
     *Les formulaires d'ajout et de détails proposeront un choix fixe de matières (et associeront automatiquement le prof et l'image illustrant la matière)
