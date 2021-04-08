@@ -1,0 +1,86 @@
+<mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup" errorMessage="Aucune matière choisie">
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Choix de matière</ng-template>
+            <mat-form-field>
+                <mat-label>Matière</mat-label>
+                <mat-form-field appearance="fill">
+                    <mat-label>Matière</mat-label>
+                    <mat-select formControlName="subjectCtrl">
+                        <mat-option *ngFor="let sub of subjects" [value]="sub">
+                            {{ sub }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-form-field>
+            <div>
+                <p><b>Prof : </b> Serge Miranda</p>
+                <img src="http://3.bp.blogspot.com/-aRzIehkx2Yc/U1aHQUXiPPI/AAAAAAAAATo/zdmu3TXGAJU/s1600/images.jpg"
+                    style="width: 200px;" alt="prof">
+            </div>
+            <div>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup" errorMessage="Titre ou date invalide">
+        <form [formGroup]="secondFormGroup">
+            <div class="stepper-form">
+                <ng-template matStepLabel>Examen</ng-template>
+                <mat-form-field>
+                    <mat-label>Titre</mat-label>
+                    <input matInput placeholder="Ex. TP2 Base de données" formControlName="titleCtrl" required>
+                </mat-form-field>
+
+                <ng-template matStepLabel>Date</ng-template>
+                <mat-form-field>
+                    <mat-label>Date</mat-label>
+                    <input matInput type="date" formControlName="dateCtrl" required>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <button mat-button matStepperPrevious>Retour</button>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="thirdFormGroup" errorMessage="Aucun étudiant séléctionné">
+        <form [formGroup]="thirdFormGroup">
+            <ng-template matStepLabel>Etudiant</ng-template>
+            <mat-form-field>
+                <mat-label>Nom</mat-label>
+                <input matInput placeholder="Ex. Justin" formControlName="studentCtrl" required>
+            </mat-form-field>
+
+            <ng-template matStepLabel>Note (optionnel)</ng-template>
+            <mat-form-field>
+                <mat-label>Note (/20)</mat-label>
+                <input matInput type="number" step="1" formControlName="markCtrl">
+            </mat-form-field>
+
+            <ng-template matStepLabel>Remarque (optionnel)</ng-template>
+            <mat-form-field>
+                <mat-label>Remarque</mat-label>
+                <textarea matInput name="note" id="noteTA" cols="3" rows="3" formControlName="noteCtrl"></textarea>
+            </mat-form-field>
+
+
+            <div>
+                <button mat-button matStepperPrevious>Retour</button>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>Confirmer</ng-template>
+        <p>Vous avez maintenant terminé.</p>
+        <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button (click)="stepper.reset()">Réinitialiser</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

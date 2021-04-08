@@ -1,0 +1,8 @@
+.mat-form-field {
+    margin-top: 16px;
+}
+
+.stepper-form {
+    display: flex;
+    justify-content: space-around;
+}

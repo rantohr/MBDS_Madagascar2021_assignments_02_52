@@ -17,6 +17,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
 
 import { RenduDirective } from './@shared/rendu.directive';
 import { NonRenduDirective } from './@shared/non-rendu.directive';
@@ -39,6 +41,7 @@ import { NavbarComponent } from './@shared/navbar/navbar.component';
 import { NotificationComponent } from './@shared/notification/notification.component';
 import { AvatarModule } from 'ngx-avatar';
 import { AssignmentCardComponent } from './pages/assignments/assignment-card/assignment-card.component';
+import { StepperFormComponent } from './@shared/stepper-form/stepper-form.component';
 
 const routes: Routes = [
   {
@@ -58,7 +61,7 @@ const routes: Routes = [
     path: 'add',
     component: AddAssignmentComponent,
     canActivate: [AuthGuard, RoleGuardService], data: {
-      role: ['admin']
+      role: ['prof']
     }
   },
   {
@@ -70,7 +73,7 @@ const routes: Routes = [
     path: 'assignment/:id/edit',
     component: EditAssigmentComponent,
     canActivate: [AuthGuard, RoleGuardService], data: {
-      role: ['admin']
+      role: ['prof']
     }
   },
   {
@@ -91,7 +94,8 @@ const routes: Routes = [
     LoginComponent,
     NavbarComponent,
     NotificationComponent,
-    AssignmentCardComponent
+    AssignmentCardComponent,
+    StepperFormComponent
   ],
   imports: [
     CommonModule,
@@ -99,8 +103,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     MatDividerModule, MatDatepickerModule, MatSnackBarModule, MatChipsModule,
-    MatNativeDateModule, MatListModule, MatCheckboxModule, MatTabsModule,
-    MatCardModule, MatIconModule, MatButtonModule, MatFormFieldModule,
+    MatNativeDateModule, MatListModule, MatCheckboxModule, MatTabsModule, MatStepperModule,
+    MatCardModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatSelectModule,
     MatInputModule, MatSlideToggleModule, MatProgressSpinnerModule,
     RouterModule.forRoot(routes), HttpClientModule,
     ReactiveFormsModule,
