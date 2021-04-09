@@ -11,7 +11,15 @@
       </div>
 
       <div class="card-detail-content">
-        <div class="card-detail-title">Angular Material</div>
+        <div class="card-detail-title">
+          Angular Material
+          <button mat-mini-fab color="primary" aria-label="edit" class="transparent-button" (click)="onClickEdit()">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-mini-fab color="warn" aria-label="delete" class="transparent-button" (click)="onDelete()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
         <span class="card-detail-code">08/04/2021</span>
 
         <h5 class="divider line razor" contenteditable>Note</h5>

@@ -1,6 +1,11 @@
-<h2>Modification de l'assignment</h2>
+<app-navbar></app-navbar>
 
-<form ngForm #formAssignment class="form" (submit)="onSubmit($event); formAssignment.reset();">
+<div class="container">
+  <h3 style="margin-top: 1em; margin-bottom: 1em; text-align: center;">Modification Assignment</h3>
+  <app-stepper-form></app-stepper-form>
+</div>
+
+<!-- <form ngForm #formAssignment class="form" (submit)="onSubmit($event); formAssignment.reset();">
   <mat-form-field>
     <input matInput placeholder="Nom du devoir" required [(ngModel)]="nom" name="nom">
   </mat-form-field>
@@ -17,4 +22,4 @@
   <button mat-stroked-button color="primary">
     Modifier le devoir
   </button>
-</form>
+</form> -->

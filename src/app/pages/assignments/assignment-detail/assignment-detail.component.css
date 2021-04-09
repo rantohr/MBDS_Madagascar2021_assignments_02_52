@@ -116,3 +116,12 @@
 .razor:after {
   box-shadow: 0 0.5px 0 black;
 }
+
+.transparent-button {
+  opacity: 0.2;
+  margin-left: 10px;
+}
+
+.transparent-button:hover {
+  opacity: 1;
+}

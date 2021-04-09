@@ -25,6 +25,8 @@ tasks:
 .Heroku [ok]
 .Error Code [ok]
 .Video
+.integration & test
+.generate data 
 
 notes: 
     *Les formulaires d'ajout et de détails proposeront un choix fixe de matières (et associeront automatiquement le prof et l'image illustrant la matière)
@@ -45,3 +47,4 @@ https://www.sanwebe.com/2014/08/css-html-forms-designs
 
 *gestion response back
 *gestion model form + output func
+*usage error Handler + snackbar
