@@ -41,5 +41,6 @@ Design :
 https://codepen.io/JavaScriptJunkie/pen/WgRBxw
 https://codepen.io/FrankieDoodie/pen/NOJpVX
 https://codepen.io/benknight/pen/zxxeay
+https://www.sanwebe.com/2014/08/css-html-forms-designs
 
 navigation: rendu - non rendu - ajouter - deco

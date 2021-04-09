@@ -19,6 +19,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { RenduDirective } from './@shared/rendu.directive';
 import { NonRenduDirective } from './@shared/non-rendu.directive';
@@ -102,10 +104,10 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatDividerModule, MatDatepickerModule, MatSnackBarModule, MatChipsModule,
+    MatDividerModule, MatDatepickerModule, MatSnackBarModule, MatChipsModule, MatAutocompleteModule,
     MatNativeDateModule, MatListModule, MatCheckboxModule, MatTabsModule, MatStepperModule,
     MatCardModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatSelectModule,
-    MatInputModule, MatSlideToggleModule, MatProgressSpinnerModule,
+    MatInputModule, MatSlideToggleModule, MatProgressSpinnerModule, MatGridListModule,
     RouterModule.forRoot(routes), HttpClientModule,
     ReactiveFormsModule,
     AvatarModule
