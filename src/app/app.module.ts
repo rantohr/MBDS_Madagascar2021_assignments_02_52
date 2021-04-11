@@ -15,6 +15,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { RenduDirective } from './@shared/rendu.directive';
 import { NonRenduDirective } from './@shared/non-rendu.directive';
@@ -35,6 +42,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TokenInterceptor } from './@core/service/http-interceptors/token-interceptor';
 import { NavbarComponent } from './@shared/navbar/navbar.component';
 import { NotificationComponent } from './@shared/notification/notification.component';
+import { AvatarModule } from 'ngx-avatar';
+import { AssignmentCardComponent } from './pages/assignments/assignment-card/assignment-card.component';
+import { StepperFormComponent } from './@shared/stepper-form/stepper-form.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteAssignmentDialogComponent } from './pages/assignments/assignment-detail/delete-assignment-dialog/delete-assignment-dialog.component';
 
 const routes: Routes = [
   {
@@ -54,7 +66,7 @@ const routes: Routes = [
     path: 'add',
     component: AddAssignmentComponent,
     canActivate: [AuthGuard, RoleGuardService], data: {
-      role: ['admin']
+      role: ['prof']
     }
   },
   {
@@ -66,7 +78,7 @@ const routes: Routes = [
     path: 'assignment/:id/edit',
     component: EditAssigmentComponent,
     canActivate: [AuthGuard, RoleGuardService], data: {
-      role: ['admin']
+      role: ['prof']
     }
   },
   {
@@ -86,19 +98,23 @@ const routes: Routes = [
     EditAssigmentComponent,
     LoginComponent,
     NavbarComponent,
-    NotificationComponent
+    NotificationComponent,
+    AssignmentCardComponent,
+    StepperFormComponent,
+    DeleteAssignmentDialogComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatDividerModule, MatDatepickerModule, MatSnackBarModule,
-    MatNativeDateModule, MatListModule, MatCheckboxModule,
-    MatCardModule, MatIconModule, MatButtonModule, MatFormFieldModule,
-    MatInputModule, MatSlideToggleModule, MatProgressSpinnerModule,
+    MatDividerModule, MatDatepickerModule, MatSnackBarModule, MatChipsModule, MatAutocompleteModule,
+    MatNativeDateModule, MatListModule, MatCheckboxModule, MatTabsModule, MatStepperModule, DragDropModule,
+    MatCardModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatDialogModule,
+    MatInputModule, MatSlideToggleModule, MatProgressSpinnerModule, MatGridListModule, MatButtonModule,
     RouterModule.forRoot(routes), HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AvatarModule
   ],
   providers: [
     AuthService,
@@ -114,6 +130,7 @@ const routes: Routes = [
       multi: true
     },
   ],
+  entryComponents: [MatDialogModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

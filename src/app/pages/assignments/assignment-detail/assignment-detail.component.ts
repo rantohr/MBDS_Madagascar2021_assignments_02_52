@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Assignment } from 'src/app/@core/schema/assignment.model';
 import { AssignmentsService } from 'src/app/@core/service/assignments.service';
 import { AuthService } from 'src/app/@core/service/auth/auth.service';
+import { DeleteAssignmentDialogComponent } from './delete-assignment-dialog/delete-assignment-dialog.component';
 @Component({
   selector: 'app-assignment-detail',
   templateUrl: './assignment-detail.component.html',
@@ -16,7 +18,8 @@ export class AssignmentDetailComponent implements OnInit {
     private assignmentsService: AssignmentsService,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -52,18 +55,26 @@ export class AssignmentDetailComponent implements OnInit {
   }
 
   onDelete(): void {
-    this.assignmentsService
-      .deleteAssignment(this.assignmentTransmis)
-      // tslint:disable-next-line: deprecation
-      .subscribe((reponse) => {
-        console.log(reponse.message)
+    const dialogRef = this.dialog.open(DeleteAssignmentDialogComponent, {
+      data: {
+        animal: 'panda'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+    // this.assignmentsService
+    //   .deleteAssignment(this.assignmentTransmis)
+    //   // tslint:disable-next-line: deprecation
+    //   .subscribe((reponse) => {
+    //     console.log(reponse.message)
 
-        // on cache l'affichage du détail
-        this.assignmentTransmis = null
+    //     // on cache l'affichage du détail
+    //     this.assignmentTransmis = null
 
-        // et on navigue vers la page d'accueil qui affiche la liste
-        this.router.navigate(['/home'])
-      });
+    //     // et on navigue vers la page d'accueil qui affiche la liste
+    //     this.router.navigate(['/home'])
+    //   });
   }
 
   onClickEdit(): void {

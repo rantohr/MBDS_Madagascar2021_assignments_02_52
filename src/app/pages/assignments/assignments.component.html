@@ -1,8 +1,10 @@
 <app-navbar></app-navbar>
 <main class="container">
+  <br>
   <h1>Liste des assignments</h1>
   <mat-divider></mat-divider>
-  <nav>
+  <br>
+  <!-- <nav>
     <button mat-raised-button color="primary" (click)="premierePage()">
       Première
     </button>
@@ -15,26 +17,43 @@
     <button mat-raised-button color="primary" (click)="dernierePage()">
       Dernière
     </button>
-  </nav>
+  </nav> -->
 
-  <mat-list *ngFor="let a of assignments">
-    <nav>
-      <a routerLink="/assignment/{{a._id}}">
-        <h3 mat-subheader>{{a.dateDeRendu | date}}</h3>
-        <mat-list-item>
-          <mat-divider></mat-divider>
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Non Rendu
+        <mat-icon style="margin-left: 1em;">thumb_down</mat-icon>
+      </ng-template>
+      <div class="grid">
+        <app-assignment-card *ngFor="let a of assignments" [assignment]="a"></app-assignment-card>
+        <!-- <nav>
+            <a routerLink="/assignment/{{a._id}}">
+              <h3 mat-subheader>{{a.dateDeRendu | date}}</h3>
+              <mat-list-item>
+                <mat-divider></mat-divider>
+      
+                <p *ngIf="a.rendu; else nonsoumis" appRendu>
+                  {{a.nom}}, rendu par l'élève.
+                </p>
+                <ng-template #nonsoumis>
+                  <p appNonRendu>
+                    {{a.nom}}, non encore rendu par l'élève.
+                  </p>
+                </ng-template>
+      
+              </mat-list-item>
+            </a>
+          </nav> -->
+      </div>
+    </mat-tab>
 
-          <p *ngIf="a.rendu; else nonsoumis" appRendu>
-            {{a.nom}}, rendu par l'élève.
-          </p>
-          <ng-template #nonsoumis>
-            <p appNonRendu>
-              {{a.nom}}, non encore rendu par l'élève.
-            </p>
-          </ng-template>
-
-        </mat-list-item>
-      </a>
-    </nav>
-  </mat-list>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Rendu
+        <mat-icon style="margin-left: 1em;">thumb_up</mat-icon>
+      </ng-template>
+      Aucune données à afficher
+    </mat-tab>
+  </mat-tab-group>
 </main>

@@ -1,0 +1,93 @@
+<mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup" [errorMessage]="firstFormErrorMessage">
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Matière</ng-template>
+            <div class="stepper-form">
+                <fieldset>
+                    <legend><span class="number">1</span> Choix de Matière </legend>
+                    <label for="subject">Matière* :</label>
+                    <select id="subject" formControlName="subjectCtrl">
+                        <option *ngFor="let sub of subjects" [value]="sub">
+                            {{ sub }}
+                        </option>
+                    </select>
+
+                    <label for="title">Titre du devoir* :</label>
+                    <input type="text" id="title" placeholder="Ex. TP2 Base de données" formControlName="titleCtrl"
+                        required>
+                </fieldset>
+                <fieldset>
+                    <legend><span class="number">1.1</span> Professeur </legend>
+                    <label> Mr Serge Miranda </label>
+                    <img src="http://3.bp.blogspot.com/-aRzIehkx2Yc/U1aHQUXiPPI/AAAAAAAAATo/zdmu3TXGAJU/s1600/images.jpg"
+                        style="width: 200px;" alt="prof">
+                </fieldset>
+                <br>
+                <button class="stepper-form-button" matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup" [errorMessage]="secondFormErrorMessage">
+        <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Etudiant</ng-template>
+            <div class="stepper-form">
+                <fieldset>
+                    <legend><span class="number">2</span> Etudiant </legend>
+                    <label for="name">Nom* :</label>
+                    <input type="text" id="name" placeholder="Ex. Zayn Malik" formControlName="studentCtrl" [matAutocomplete]="auto" required>
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let stud of filteredOptions | async" [value]="stud">
+                            {{ stud }}
+                        </mat-option>
+                      </mat-autocomplete>
+                </fieldset>
+                <fieldset>
+                    <legend><span class="number">3</span> Devoir </legend>
+                    <label for="date">Date :</label>
+                    <input type="date" formControlName="dateCtrl" id="date">
+
+                    <label for="mark">Note (/20) :</label>
+                    <input id="mark" type="number" step="1" formControlName="markCtrl">
+
+                    <label for="note">Remarque :</label>
+                    <textarea matInput id="note" cols="3" rows="3" formControlName="noteCtrl"></textarea>
+
+                </fieldset>
+                <br>
+                <mat-grid-list cols="2" rowHeight="4rem">
+                    <mat-grid-tile>
+                        <button class="stepper-form-button stepper-return-button" matStepperPrevious>Retour</button>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button class="stepper-form-button" matStepperNext>Suivant</button>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>Confirmer</ng-template>
+        <div class="stepper-form">
+            <fieldset>
+                <legend><span class="number">4</span> Confirmation </legend>
+                <p>Vous avez maintenant terminé.</p>
+            </fieldset>
+            <fieldset>
+                <legend><span class="number">2</span> Devoir </legend>
+                <mat-grid-list cols="3" rowHeight="4rem">
+                    <mat-grid-tile>
+                        <button class="stepper-form-button stepper-return-button" matStepperPrevious>Retour</button>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button class="stepper-form-button stepper-reset-button" (click)="stepper.reset()">Réinitialiser</button>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button class="stepper-form-button" (click)="submit()">Valider</button>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </fieldset>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

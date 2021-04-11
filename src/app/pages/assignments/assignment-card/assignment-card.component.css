@@ -1,0 +1,38 @@
+.assignment-card {
+    max-width    : 350px;
+    cursor       : pointer;
+    margin-bottom: 1em;
+}
+
+.assignment-card span {
+    vertical-align: bottom;
+}
+
+.assignment-card i {
+    margin-left: 5px;
+}
+
+.assignment-card-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.assignment-card-footer p {
+    margin-bottom: 0px;
+}
+
+.teacher-avatar {
+    left    : 70%;
+    position: absolute;
+    top     : 44%;
+}
+
+/* drag */
+.example-handle {
+    color   : #ccc;
+    cursor  : move;
+    width   : 24px;
+    height  : 24px;
+    transform: scale(1.5);
+    margin-top: 10px;
+}
