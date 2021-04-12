@@ -48,3 +48,25 @@ https://www.sanwebe.com/2014/08/css-html-forms-designs
 *gestion response back
 *gestion model form + output func
 *usage error Handler + snackbar
+
+TASK:
+[En_cours]
+.Intégration Front - Back
+    .Liste (Rendu | Non Rendu) + Pagination + Infinite scroll
+    .Ajout: Intégration stepper form
+    .Edit: Intégration stepper form
+    .Delete
+        *(Ajout - Edit - Delete): chargement Matiere & Prof Back + intégration snackbar + conversion stepper-form-data en model + ouput event
+.500 Données de test
+.Test
+.ReadMe
+.Video Démo
+
+[Optionel]
+.drag and drop rendu + formulaire edit note
+
+[TSY_mazava]
+.role & access (étudiant - prof - ... ) ???
+.CRUD matiere + upload ???
+.CRUD prof ???
+

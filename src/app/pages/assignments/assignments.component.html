@@ -46,6 +46,8 @@
             </a>
           </nav> -->
       </div>
+      <mat-paginator [length]="totalDocs" [pageSize]="limit" [pageSizeOptions]="[5, 10, 25, 100]" [showFirstLastButtons]="true" (page)="getServerData($event)">
+      </mat-paginator>
     </mat-tab>
 
     <mat-tab>
@@ -55,5 +57,14 @@
       </ng-template>
       Aucune données à afficher
     </mat-tab>
+
+
+    <!-- <mat-tab>
+      <ng-template mat-tab-label>
+        Infinite Scrolling
+      </ng-template>
+      <app-infinite-scrolling></app-infinite-scrolling>
+    </mat-tab> -->
+
   </mat-tab-group>
 </main>

@@ -17,9 +17,14 @@ export class AssignmentsService {
 
   uri = `${environment.SERVER_URL}/api/assignments`
 
-  getAssignments(): Observable<Assignment[]> {
-    console.log('Dans le service de gestion des assignments...')
-    return this.http.get<Assignment[]>(this.uri)
+  getAssignments(queries?: { key: string, value: string }[]): Observable<Assignment[]> {
+    let urlQueries = ''
+    if (Array.isArray(queries) && queries.length) {
+      queries.forEach((e, i) => {
+        urlQueries = `${urlQueries}${e.key}=${e.value}${(i !== queries.length - 1) ? '&' : ''}`
+      });
+    }
+    return this.http.get<Assignment[]>(this.uri + `${urlQueries ? '?' + urlQueries : ''}`)
   }
 
   getAssignmentsPagine(page: number, limit: number): Observable<any> {

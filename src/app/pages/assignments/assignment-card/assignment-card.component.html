@@ -1,4 +1,4 @@
-<mat-card class="assignment-card" cdkDrag>
+<mat-card class="assignment-card" *ngIf="assignment && assignment.id !== -1" cdkDrag>
     <img mat-card-image src="https://s7280.pcdn.co/wp-content/uploads/2016/06/database-blue.png" alt="matière">
     <ngx-avatar class="teacher-avatar"
         src="http://3.bp.blogspot.com/-aRzIehkx2Yc/U1aHQUXiPPI/AAAAAAAAATo/zdmu3TXGAJU/s1600/images.jpg" size="100">
@@ -31,3 +31,5 @@
         </div>
     </mat-card-content>
 </mat-card>
+
+<div *ngIf="!assignment || assignment.id === -1"><mat-spinner></mat-spinner></div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { PageEvent } from '@angular/material/paginator'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Assignment } from 'src/app/@core/schema/assignment.model'
 import { AssignmentsService } from 'src/app/@core/service/assignments.service'
@@ -41,6 +42,7 @@ export class AssignmentsComponent implements OnInit {
   }
 
   getAssignments(): void {
+    // this.assignmentsService.getAssignmentsPagine(this.page, this.limit)
     this.assignmentsService.getAssignmentsPagine(this.page, this.limit)
       // tslint:disable-next-line: deprecation
       .subscribe(data => {
@@ -106,5 +108,13 @@ export class AssignmentsComponent implements OnInit {
         limit: this.limit,
       }
     })
+  }
+
+  getServerData(event?: PageEvent) {
+    console.log('event', event)
+    this.page = event.pageIndex + 1
+    this.limit = event.pageSize
+    this.getAssignments()
+    return event;
   }
 }
