@@ -4,17 +4,17 @@
         src="http://3.bp.blogspot.com/-aRzIehkx2Yc/U1aHQUXiPPI/AAAAAAAAATo/zdmu3TXGAJU/s1600/images.jpg" size="100">
     </ngx-avatar>
     <mat-card-content>
-        <h4>Angular Material</h4>
+        <h4>{{ assignment.nom }}</h4>
         <div>
             <span class="material-icons">
                 event
-            </span> <i>04-08-2021</i>
+            </span> <i>{{ assignment.dateDeRendu }}</i>
         </div>
         <hr>
         <div class="assignment-card-footer">
             <div>
                 <b>Elève :&nbsp;</b>
-                <p>John Cena</p>
+                <p>{{ assignment.auteur }}</p>
             </div>
             <div style="display: flex; justify-content: space-around;">
                 <button mat-stroked-button color="primary" (click)="openDetail()"
