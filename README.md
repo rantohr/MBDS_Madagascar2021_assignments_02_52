@@ -58,7 +58,7 @@ TASK:
     .Delete
         *(Ajout - Edit - Delete): chargement Matiere & Prof Back + intégration snackbar + conversion stepper-form-data en model + ouput event
 .500 Données de test
-.Test Login - Role
+.Test
 .ReadMe
 .Video Démo
 

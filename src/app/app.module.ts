@@ -22,6 +22,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { RenduDirective } from './@shared/rendu.directive';
 import { NonRenduDirective } from './@shared/non-rendu.directive';
@@ -38,7 +41,6 @@ import { RoleGuardService } from './@core/service/auth/role.guard';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AuthService } from './@core/service/auth/auth.service';
 import { CommonModule } from '@angular/common';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TokenInterceptor } from './@core/service/http-interceptors/token-interceptor';
 import { NavbarComponent } from './@shared/navbar/navbar.component';
 import { NotificationComponent } from './@shared/notification/notification.component';
@@ -47,6 +49,7 @@ import { AssignmentCardComponent } from './pages/assignments/assignment-card/ass
 import { StepperFormComponent } from './@shared/stepper-form/stepper-form.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteAssignmentDialogComponent } from './pages/assignments/assignment-detail/delete-assignment-dialog/delete-assignment-dialog.component';
+import { InfiniteScrollingComponent } from './pages/assignments/infinite-scrolling/infinite-scrolling.component';
 
 const routes: Routes = [
   {
@@ -101,7 +104,8 @@ const routes: Routes = [
     NotificationComponent,
     AssignmentCardComponent,
     StepperFormComponent,
-    DeleteAssignmentDialogComponent
+    DeleteAssignmentDialogComponent,
+    InfiniteScrollingComponent
   ],
   imports: [
     CommonModule,
@@ -112,6 +116,7 @@ const routes: Routes = [
     MatNativeDateModule, MatListModule, MatCheckboxModule, MatTabsModule, MatStepperModule, DragDropModule,
     MatCardModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatDialogModule,
     MatInputModule, MatSlideToggleModule, MatProgressSpinnerModule, MatGridListModule, MatButtonModule,
+    ScrollingModule, MatPaginatorModule,
     RouterModule.forRoot(routes), HttpClientModule,
     ReactiveFormsModule,
     AvatarModule
