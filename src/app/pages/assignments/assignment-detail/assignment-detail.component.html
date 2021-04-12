@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="container">
+<div class="container" *ngIf="assignmentTransmis">
   <!-- titre, la date, l'élève, Note sur 20, rendu, Matière, image matière, prof nom, photo prof, Remarques,  -->
 
   <div class="card-detail">
@@ -7,12 +7,12 @@
 
       <div class="card-detail-img">
         <img src="https://s7280.pcdn.co/wp-content/uploads/2016/06/database-blue.png" alt="">
-        <p style="font-size: 20px; text-align: center;"> <b>Matière : </b> Mean Stack</p>
+        <p style="font-size: 20px; text-align: center;"> <b>Matière : </b> {{ assignmentTransmis.matiere?.name }}</p>
       </div>
 
       <div class="card-detail-content">
         <div class="card-detail-title">
-          Angular Material
+          {{ assignmentTransmis.nom }}
           <button mat-mini-fab color="primary" aria-label="edit" class="transparent-button" (click)="onClickEdit()">
             <mat-icon>edit</mat-icon>
           </button>
@@ -20,31 +20,30 @@
             <mat-icon>delete</mat-icon>
           </button>
         </div>
-        <span class="card-detail-code">08/04/2021</span>
+        <span class="card-detail-code">{{ assignmentTransmis.dateDeRendu }}</span>
 
         <h5 class="divider line razor" contenteditable>Note</h5>
         <div class="card-detail-text">
-          <b>Elève : </b> Elon Musk
+          <b>Elève : </b> {{ assignmentTransmis.auteur?.name }}
         </div>
 
-        <div class="card-detail-text" style="display: flex;">
+        <div class="card-detail-text" style="display: flex;" *ngIf="assignmentTransmis.rendu">
           <b>Note : </b>
-          <p style="margin-left: 10px;">15/20</p>
+          <p style="margin-left: 10px;">{{ assignmentTransmis.note }}</p>
           <mat-chip-list style="margin-left: 10px;">
             <mat-chip color="primary" selected>Rendu</mat-chip>
           </mat-chip-list>
         </div>
 
-        <!-- <div class="card-detail-text">
+        <div class="card-detail-text" style="display: flex;" *ngIf="!assignmentTransmis.rendu">
           <mat-chip-list>
             <mat-chip color="warn" selected>Non Rendu</mat-chip>
           </mat-chip-list>
-        </div> -->
+        </div>
 
         <div class="card-detail-text">
           <b>Remarques : </b>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae voluptate
-          repellendus magni illo ea animi?
+          {{ assignmentTransmis.remarques }}
         </div>
 
         <br>
@@ -53,10 +52,10 @@
         <!-- profile -->
         <div class="teacher-profile">
           <div class="picture">
-            <img class="img-fluid" src="https://picsum.photos/130/130?image=1027">
+            <img class="img-fluid" src="{{ assignmentTransmis.matiere?.teacher?.image }}">
           </div>
           <div>
-            <h3 class="name">Michele Miller</h3>
+            <h3 class="name">{{ assignmentTransmis.matiere?.teacher?.name }}</h3>
           </div>
         </div>
         <!-- END profile -->

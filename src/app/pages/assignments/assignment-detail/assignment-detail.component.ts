@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Assignment } from 'src/app/@core/schema/assignment.model';
@@ -12,7 +12,7 @@ import { DeleteAssignmentDialogComponent } from './delete-assignment-dialog/dele
 })
 export class AssignmentDetailComponent implements OnInit {
   // passé sous forme d'attribut HTML
-  assignmentTransmis: Assignment
+  @Input() assignmentTransmis: any = {};
 
   constructor(
     private assignmentsService: AssignmentsService,
@@ -35,6 +35,7 @@ export class AssignmentDetailComponent implements OnInit {
     this.assignmentsService.getAssignment(id)
       // tslint:disable-next-line: deprecation
       .subscribe((assignment) => {
+        console.log("assignment", assignment);
         this.assignmentTransmis = assignment
       });
   }

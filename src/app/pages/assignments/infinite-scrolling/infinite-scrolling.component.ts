@@ -27,7 +27,11 @@ export class AssignmentsDataSource extends DataSource<Assignment | undefined> {
     id: -1,
     nom: '',
     dateDeRendu: undefined,
-    rendu: false
+    rendu: false,
+    matiere: '',
+    auteur: '',
+    note: -1,
+    remarques: ''
   }]
   private _fetchedPages = new Set<number>();
   private _dataStream = new BehaviorSubject<(Assignment | undefined)[]>(this._cachedData);

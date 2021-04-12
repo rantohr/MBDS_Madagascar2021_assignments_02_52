@@ -7,6 +7,6 @@ export class Assignment {
   rendu: boolean;
   matiere: string;
   auteur: string;
-  nots: number;
-  remarque: string;
+  note: number;
+  remarques: string;
 }
