@@ -6,14 +6,14 @@
                 <fieldset>
                     <legend><span class="number">1</span> Choix de Matière </legend>
                     <label for="subject">Matière* :</label>
-                    <select id="subject" formControlName="subjectCtrl">
+                    <select id="subject" formControlName="matiere">
                         <option *ngFor="let sub of subjects" [value]="sub">
                             {{ sub }}
                         </option>
                     </select>
 
                     <label for="title">Titre du devoir* :</label>
-                    <input type="text" id="title" placeholder="Ex. TP2 Base de données" formControlName="titleCtrl"
+                    <input type="text" id="title" placeholder="Ex. TP2 Base de données" formControlName="nom"
                         required>
                 </fieldset>
                 <fieldset>
@@ -35,7 +35,7 @@
                 <fieldset>
                     <legend><span class="number">2</span> Etudiant </legend>
                     <label for="name">Nom* :</label>
-                    <input type="text" id="name" placeholder="Ex. Zayn Malik" formControlName="studentCtrl" [matAutocomplete]="auto" required>
+                    <input type="text" id="name" placeholder="Ex. Zayn Malik" formControlName="auteur" [matAutocomplete]="auto" required>
                     <mat-autocomplete #auto="matAutocomplete">
                         <mat-option *ngFor="let stud of filteredOptions | async" [value]="stud">
                             {{ stud }}
@@ -45,13 +45,13 @@
                 <fieldset>
                     <legend><span class="number">3</span> Devoir </legend>
                     <label for="date">Date :</label>
-                    <input type="date" formControlName="dateCtrl" id="date">
+                    <input type="date" formControlName="dateDeRendu" id="date">
 
                     <label for="mark">Note (/20) :</label>
-                    <input id="mark" type="number" step="1" formControlName="markCtrl">
+                    <input id="mark" type="number" step="1" formControlName="note">
 
                     <label for="note">Remarque :</label>
-                    <textarea matInput id="note" cols="3" rows="3" formControlName="noteCtrl"></textarea>
+                    <textarea matInput id="note" cols="3" rows="3" formControlName="remarques"></textarea>
 
                 </fieldset>
                 <br>
