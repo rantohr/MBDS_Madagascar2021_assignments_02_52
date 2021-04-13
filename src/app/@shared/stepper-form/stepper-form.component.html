@@ -5,22 +5,34 @@
             <div class="stepper-form">
                 <fieldset>
                     <legend><span class="number">1</span> Choix de Matière </legend>
-                    <label for="subject">Matière* :</label>
-                    <select id="subject" formControlName="matiere">
-                        <option *ngFor="let sub of subjects" [value]="sub">
-                            {{ sub }}
-                        </option>
-                    </select>
+
+                    <div class="grid">
+                        <div>
+                            <label for="subject">Matière* :</label>
+                            <select id="subject" formControlName="matiere"
+                                (change)="selectSubject($event.target.value)">
+                                <option *ngFor="let sub of subjects" [value]="sub?._id">
+                                    {{ sub?.name }}
+                                </option>
+                            </select>
+                        </div>
+                        <div>
+                            <img [src]="currentSubject?.image" style="width: 200px;">
+                        </div>
+                    </div>
+
+
 
                     <label for="title">Titre du devoir* :</label>
-                    <input type="text" id="title" placeholder="Ex. TP2 Base de données" formControlName="nom"
-                        required>
+                    <input type="text" id="title" placeholder="Ex. TP2 Base de données" formControlName="nom" required>
                 </fieldset>
                 <fieldset>
                     <legend><span class="number">1.1</span> Professeur </legend>
-                    <label> Mr Serge Miranda </label>
-                    <img src="http://3.bp.blogspot.com/-aRzIehkx2Yc/U1aHQUXiPPI/AAAAAAAAATo/zdmu3TXGAJU/s1600/images.jpg"
-                        style="width: 200px;" alt="prof">
+
+                    <div class="grid">
+                        <label> {{ currentSubject?.teacher?.name }} </label>
+                        <img [src]="currentSubject?.teacher?.image" style="width: 200px;">
+                    </div>
                 </fieldset>
                 <br>
                 <button class="stepper-form-button" matStepperNext>Suivant</button>
@@ -35,12 +47,13 @@
                 <fieldset>
                     <legend><span class="number">2</span> Etudiant </legend>
                     <label for="name">Nom* :</label>
-                    <input type="text" id="name" placeholder="Ex. Zayn Malik" formControlName="auteur" [matAutocomplete]="auto" required>
+                    <input type="text" id="name" placeholder="Ex. Zayn Malik" formControlName="auteur"
+                        [matAutocomplete]="auto" (change)="selectStudent($event)" required>
                     <mat-autocomplete #auto="matAutocomplete">
                         <mat-option *ngFor="let stud of filteredOptions | async" [value]="stud">
                             {{ stud }}
                         </mat-option>
-                      </mat-autocomplete>
+                    </mat-autocomplete>
                 </fieldset>
                 <fieldset>
                     <legend><span class="number">3</span> Devoir </legend>
@@ -81,7 +94,8 @@
                         <button class="stepper-form-button stepper-return-button" matStepperPrevious>Retour</button>
                     </mat-grid-tile>
                     <mat-grid-tile>
-                        <button class="stepper-form-button stepper-reset-button" (click)="stepper.reset()">Réinitialiser</button>
+                        <button class="stepper-form-button stepper-reset-button"
+                            (click)="stepper.reset()">Réinitialiser</button>
                     </mat-grid-tile>
                     <mat-grid-tile>
                         <button class="stepper-form-button" (click)="submit()">Valider</button>

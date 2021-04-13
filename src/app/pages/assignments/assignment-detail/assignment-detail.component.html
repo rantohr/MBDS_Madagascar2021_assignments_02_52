@@ -1,13 +1,12 @@
 <app-navbar></app-navbar>
 <div class="container" *ngIf="assignmentTransmis">
-  <!-- titre, la date, l'élève, Note sur 20, rendu, Matière, image matière, prof nom, photo prof, Remarques,  -->
 
   <div class="card-detail">
     <div class="card-detail-item swiper-slide">
 
       <div class="card-detail-img">
-        <img src="https://s7280.pcdn.co/wp-content/uploads/2016/06/database-blue.png" alt="">
-        <p style="font-size: 20px; text-align: center;"> <b>Matière : </b> {{ assignmentTransmis.matiere?.name }}</p>
+        <img [src]="assignment?.matiere?.image ? serverPublicUrl+assignment?.matiere?.image : ''" alt="">
+        <p style="font-size: 20px; text-align: center;"> <b>Matière : </b> {{ assignmentTransmis?.matiere?.name }}</p>
       </div>
 
       <div class="card-detail-content">
@@ -20,11 +19,11 @@
             <mat-icon>delete</mat-icon>
           </button>
         </div>
-        <span class="card-detail-code">{{ assignmentTransmis.dateDeRendu }}</span>
+        <span class="card-detail-code">{{ assignmentTransmis.dateDeRendu | date}}</span>
 
         <h5 class="divider line razor" contenteditable>Note</h5>
         <div class="card-detail-text">
-          <b>Elève : </b> {{ assignmentTransmis.auteur?.name }}
+          <b>Elève : </b> {{ assignmentTransmis?.auteur?.name }}
         </div>
 
         <div class="card-detail-text" style="display: flex;" *ngIf="assignmentTransmis.rendu">
@@ -52,10 +51,10 @@
         <!-- profile -->
         <div class="teacher-profile">
           <div class="picture">
-            <img class="img-fluid" src="{{ assignmentTransmis.matiere?.teacher?.image }}">
+            <img class="img-fluid" [src]="assignment?.matiere?.image ? serverPublicUrl+assignment?.matiere?.image : ''">
           </div>
           <div>
-            <h3 class="name">{{ assignmentTransmis.matiere?.teacher?.name }}</h3>
+            <h3 class="name">{{ assignmentTransmis?.matiere?.teacher?.name }}</h3>
           </div>
         </div>
         <!-- END profile -->

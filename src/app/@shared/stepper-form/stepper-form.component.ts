@@ -1,14 +1,12 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Assignment } from 'src/app/@core/schema/assignment.model';
-import { AssignmentsService } from 'src/app/@core/service/assignments.service';
-import { ErrorMessageHandler } from 'src/app/@core/service/error-message-handler';
-import { NotificationComponent } from '../notification/notification.component';
+import { SubjectsService } from 'src/app/@core/service/subjects.service';
+import { UsersService } from 'src/app/@core/service/users.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-stepper-form',
@@ -20,24 +18,24 @@ import { NotificationComponent } from '../notification/notification.component';
 })
 export class StepperFormComponent implements OnInit {
 
+  @Input() assignment: Assignment;
+  @Output() submitAssignmentEvent = new EventEmitter<Assignment>();
+
   firstFormGroup: FormGroup; // matiere
   secondFormGroup: FormGroup; // eleve + note
-  subjects = [
-    'Base de données', 'Web et Design', 'Algorithme'
-  ];
-  students = [
-    'Zayn Malik', 'Lelu Ibra', 'Jonas Flex', 'Tom Chung'
-  ];
+  subjects = [];
+  students = [];
+  studentNames = [];
   firstFormErrorMessage: string
   secondFormErrorMessage: string
-  filteredOptions: Observable<string[]>;
+  filteredOptions: Observable<string[]>
+  currentSubject: any
 
   constructor(
     private _formBuilder: FormBuilder,
-    private assignmentService: AssignmentsService,
-    private _snackBar: MatSnackBar, 
-    private _errorMessageHandler: ErrorMessageHandler,
-    private router: Router) { }
+    private _subjectsService: SubjectsService,
+    private _usersService: UsersService
+  ) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -60,15 +58,39 @@ export class StepperFormComponent implements OnInit {
         startWith(''),
         map(value => this._filter(value))
       );
+
+    this._subjectsService.getSubjects().subscribe(subjects => {
+      if (subjects) {
+        this.subjects = subjects
+      }
+    })
+
+    this._usersService.getStudents().subscribe(s => {
+      if (s) {
+        this.students = s
+        this.studentNames = this.students.map(e => e.name)
+      }
+    })
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.students.filter(option => option.toLowerCase().includes(filterValue));
+    return this.studentNames.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  selectSubject(event): void {
+    this.currentSubject = this.subjects.find(e => e._id === event)
+    this.currentSubject.image = `${environment.SERVER_URL}/public/images/${this.currentSubject.image}`; 
+    if(this.currentSubject.teacher) this.currentSubject.teacher.image = `${environment.SERVER_URL}/public/images/${this.currentSubject.teacher.image}`; 
+  }
+
+  selectStudent(event): void {
+    console.log('event', event)
+    // this.subjects = event.teacher
   }
 
   submit(): void {
-    console.log('values', this.firstFormGroup.value, this.secondFormGroup.value)
+
     const assignment = new Assignment();
     assignment.nom = this.firstFormGroup.value.nom;
     assignment.dateDeRendu = new Date(this.secondFormGroup.value.dateDeRendu);
@@ -78,27 +100,10 @@ export class StepperFormComponent implements OnInit {
     assignment.note = this.secondFormGroup.value.note;
     assignment.remarques = this.secondFormGroup.value.remarques;
 
-    this.assignmentService.addAssignment(assignment)
-      .subscribe(response => {
-        this._snackBar.openFromComponent(NotificationComponent, {
-          duration: 4000,
-          data: {
-            message: "Assignment ajouté",
-            type: 'success'
-          },
-          panelClass: ['success-snackbar']
-        });
-        this.router.navigate(['/']);
-      }, error => {
-        this._snackBar.openFromComponent(NotificationComponent, {
-          duration: 4000,
-          data: {
-            message: this._errorMessageHandler.getSingleErrorMessage(error),
-            type: 'error'
-          },
-          panelClass: ['error-snackbar']
-        });
-      });
+    console.log('assignment', assignment)
+
+    this.submitAssignmentEvent.emit(assignment);
+
   }
 }
 

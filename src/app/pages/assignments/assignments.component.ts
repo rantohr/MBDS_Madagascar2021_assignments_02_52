@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { PageEvent } from '@angular/material/paginator'
 import { ActivatedRoute, Router } from '@angular/router'
+import { map } from 'rxjs/operators'
 import { Assignment } from 'src/app/@core/schema/assignment.model'
 import { AssignmentsService } from 'src/app/@core/service/assignments.service'
+import { environment } from 'src/environments/environment'
 
 @Component({
   selector: 'app-assignments',

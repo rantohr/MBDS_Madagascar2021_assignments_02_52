@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Assignment } from 'src/app/@core/schema/assignment.model';
 import { AssignmentsService } from 'src/app/@core/service/assignments.service';
 import { AuthService } from 'src/app/@core/service/auth/auth.service';
+import { environment } from 'src/environments/environment';
 import { DeleteAssignmentDialogComponent } from './delete-assignment-dialog/delete-assignment-dialog.component';
 @Component({
   selector: 'app-assignment-detail',
@@ -13,6 +14,7 @@ import { DeleteAssignmentDialogComponent } from './delete-assignment-dialog/dele
 export class AssignmentDetailComponent implements OnInit {
   // passé sous forme d'attribut HTML
   @Input() assignmentTransmis: any = {};
+  serverPublicUrl = `${environment.SERVER_URL}/public/images/`
 
   constructor(
     private assignmentsService: AssignmentsService,

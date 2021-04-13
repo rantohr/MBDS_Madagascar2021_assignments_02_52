@@ -76,16 +76,16 @@
 }
 
 .stepper-form-button {
-    position     : relative;
-    display      : block;
-    padding      : 14px 28px;
-    color        : #FFF;
-    background   : #3f51b5;
-    font-size    : 18px;
-    text-align   : center;
-    font-style   : normal;
-    width        : 100%;
-    border       : none;
+    position  : relative;
+    display   : block;
+    padding   : 14px 28px;
+    color     : #FFF;
+    background: #3f51b5;
+    font-size : 18px;
+    text-align: center;
+    font-style: normal;
+    width     : 100%;
+    border    : none;
 }
 
 .stepper-form-button:hover {
@@ -112,4 +112,10 @@
 
 .stepper-reset-button:hover {
     background: #e7e7e7;
+}
+
+.grid {
+    display              : grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap      : 10px;
 }

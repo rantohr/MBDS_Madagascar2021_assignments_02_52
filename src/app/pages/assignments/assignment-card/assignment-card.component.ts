@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-assignment-card',
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
 export class AssignmentCardComponent implements OnInit {
 
   @Input() assignment: any;
+  
+  serverPublicUrl = `${environment.SERVER_URL}/public/images/`
 
   constructor(private router: Router) { }
 
