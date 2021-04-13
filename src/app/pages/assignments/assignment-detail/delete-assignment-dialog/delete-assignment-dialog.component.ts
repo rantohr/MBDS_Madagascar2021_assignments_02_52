@@ -15,9 +15,7 @@ export class DeleteAssignmentDialogComponent implements OnInit {
 
   submit(): void {
     console.log('delete')
-    this.dialogRef.close({
-      _id: 'deleteME'
-    });
+    this.dialogRef.close(this.data);
   }
 
   close(): void {

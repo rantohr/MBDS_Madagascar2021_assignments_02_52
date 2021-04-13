@@ -25,7 +25,11 @@ export class LoginComponent implements OnInit {
   public mode = DisplayMode.Login;
   public displayMode = DisplayMode;
 
-  constructor(private authService: AuthService, private router: Router, private _snackBar: MatSnackBar, private _errorMessageHandler: ErrorMessageHandler) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private _snackBar: MatSnackBar,
+    private _errorMessageHandler: ErrorMessageHandler) { }
 
   ngOnInit(): void {
     this.createForm();

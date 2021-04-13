@@ -2,24 +2,5 @@
 
 <div class="container">
   <h3 style="margin-top: 1em; margin-bottom: 1em; text-align: center;">Modification Assignment</h3>
-  <app-stepper-form></app-stepper-form>
+  <app-stepper-form [assignment]="assignment" *ngIf="assignment" (submitAssignmentEvent)="onSubmit($event)"></app-stepper-form>
 </div>
-
-<!-- <form ngForm #formAssignment class="form" (submit)="onSubmit($event); formAssignment.reset();">
-  <mat-form-field>
-    <input matInput placeholder="Nom du devoir" required [(ngModel)]="nom" name="nom">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Choisissez une date</mat-label>
-    <input matInput [matDatepicker]="picker" required [(ngModel)]="dateDeRendu" name="date">
-
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-
-  <button mat-stroked-button color="primary">
-    Modifier le devoir
-  </button>
-</form> -->

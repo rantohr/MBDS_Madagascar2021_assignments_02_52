@@ -84,19 +84,11 @@ export class AssignmentsService {
     // console.log("updateAssignment l'assignment passé en param est à la position " + index + " du tableau");
     this.loggingService.log(assignment.nom, ' a été modifié');
 
-    return this.http.put(this.uri, assignment);
+    return this.http.put(this.uri + '/' + assignment._id, assignment);
   }
 
-  deleteAssignment(assignment: Assignment): Observable<any> {
-    /*
-    let index = this.assignments.indexOf(assignment);
-    this.assignments.splice(index, 1);
-    */
-
-    this.loggingService.log(assignment.nom, ' a été supprimé');
-
-    return this.http.delete(this.uri + '/' + assignment._id);
-
+  deleteAssignment(id: string): Observable<any> {
+    return this.http.delete(this.uri + '/' + id);
   }
 
   peuplerBD(): void {

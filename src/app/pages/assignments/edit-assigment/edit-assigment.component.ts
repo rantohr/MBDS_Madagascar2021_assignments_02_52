@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Assignment } from 'src/app/@core/schema/assignment.model';
 import { AssignmentsService } from 'src/app/@core/service/assignments.service';
+import { ErrorMessageHandler } from 'src/app/@core/service/error-message-handler';
+import { NotificationComponent } from 'src/app/@shared/notification/notification.component';
 @Component({
   selector: 'app-edit-assigment',
   templateUrl: './edit-assigment.component.html',
@@ -10,58 +13,48 @@ import { AssignmentsService } from 'src/app/@core/service/assignments.service';
 export class EditAssigmentComponent implements OnInit {
   assignment: Assignment;
 
-  // pour le formulaire
-  nom = ''
-  dateDeRendu = null
-
   constructor(
+    private _snackBar: MatSnackBar,
+    private _errorMessageHandler: ErrorMessageHandler,
     private assignmentsService: AssignmentsService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    // ici on montre comment on peut récupérer les parametres http
-    // par ex de :
-    // http://localhost:4200/assignment/1/edit?nom=Michel%20Buffa&metier=Professeur&responsable=MIAGE#edition
-
-    console.log(this.route.snapshot.queryParams)
-    console.log(this.route.snapshot.fragment)
-
-    this.getAssignmentById()
-  }
-
-  getAssignmentById(): void {
-    // les params sont des string, on va forcer la conversion
-    // en number en mettant un "+" devant
-    const id: number = +this.route.snapshot.params.id
-    console.log('Dans ngOnInit de details, id = ' + id)
-    this.assignmentsService.getAssignment(id)
-    // tslint:disable-next-line: deprecation
-    .subscribe((assignment) => {
-      this.assignment = assignment
-
-      this.nom = assignment.nom
-      this.dateDeRendu = assignment.dateDeRendu
+    this.route.params.subscribe(params => {
+      if (params) {
+        this.assignmentsService.getAssignment(params.id)
+          // tslint:disable-next-line: deprecation
+          .subscribe((assignment) => {
+            if (assignment) this.assignment = assignment
+          });
+      }
     });
   }
 
-
   onSubmit(event): void {
-    // on va modifier l'assignment
-    if ((!this.nom) || (!this.dateDeRendu)) return
-
-    this.assignment.nom = this.nom
-    this.assignment.dateDeRendu = this.dateDeRendu
-
-    this.assignmentsService.updateAssignment(this.assignment)
-      // tslint:disable-next-line: deprecation
-      .subscribe(message => {
-        console.log(message)
-
-        // et on navigue vers la page d'accueil
-        this.router.navigate(['/home'])
-      })
+    this.assignmentsService.updateAssignment(event)
+      .subscribe(response => {
+        this._snackBar.openFromComponent(NotificationComponent, {
+          duration: 4000,
+          data: {
+            message: 'Assignment modifié',
+            type: 'success'
+          },
+          panelClass: ['success-snackbar']
+        });
+        this.router.navigate(['/']);
+      }, error => {
+        this._snackBar.openFromComponent(NotificationComponent, {
+          duration: 4000,
+          data: {
+            message: this._errorMessageHandler.getSingleErrorMessage(error),
+            type: 'error'
+          },
+          panelClass: ['error-snackbar']
+        });
+      });
 
   }
 }

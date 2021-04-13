@@ -5,7 +5,7 @@
     <div class="card-detail-item swiper-slide">
 
       <div class="card-detail-img">
-        <img [src]="assignment?.matiere?.image ? serverPublicUrl+assignment?.matiere?.image : ''" alt="">
+        <img [src]="imageMatiere" alt="">
         <p style="font-size: 20px; text-align: center;"> <b>Matière : </b> {{ assignmentTransmis?.matiere?.name }}</p>
       </div>
 
@@ -19,22 +19,22 @@
             <mat-icon>delete</mat-icon>
           </button>
         </div>
-        <span class="card-detail-code">{{ assignmentTransmis.dateDeRendu | date}}</span>
+        <span class="card-detail-code">{{ assignmentTransmis.dateDeRendu | date }}</span>
 
         <h5 class="divider line razor" contenteditable>Note</h5>
         <div class="card-detail-text">
           <b>Elève : </b> {{ assignmentTransmis?.auteur?.name }}
         </div>
 
-        <div class="card-detail-text" style="display: flex;" *ngIf="assignmentTransmis.rendu">
+        <div class="card-detail-text" style="display: flex;" *ngIf="assignmentTransmis.note">
           <b>Note : </b>
-          <p style="margin-left: 10px;">{{ assignmentTransmis.note }}</p>
+          <p style="margin-left: 10px;">{{ assignmentTransmis.note }}/20</p>
           <mat-chip-list style="margin-left: 10px;">
             <mat-chip color="primary" selected>Rendu</mat-chip>
           </mat-chip-list>
         </div>
 
-        <div class="card-detail-text" style="display: flex;" *ngIf="!assignmentTransmis.rendu">
+        <div class="card-detail-text" style="display: flex;" *ngIf="!assignmentTransmis.note">
           <mat-chip-list>
             <mat-chip color="warn" selected>Non Rendu</mat-chip>
           </mat-chip-list>
@@ -51,7 +51,7 @@
         <!-- profile -->
         <div class="teacher-profile">
           <div class="picture">
-            <img class="img-fluid" [src]="assignment?.matiere?.image ? serverPublicUrl+assignment?.matiere?.image : ''">
+            <img class="img-fluid" [src]="imageProf">
           </div>
           <div>
             <h3 class="name">{{ assignmentTransmis?.matiere?.teacher?.name }}</h3>
@@ -63,21 +63,4 @@
     </div>
   </div>
 
-  <!-- <mat-card *ngIf="assignmentTransmis">
-    <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
-    <mat-card-subtitle>{{assignmentTransmis.dateDeRendu | date}}</mat-card-subtitle>
-    <div id="bottom">
-      <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">
-        Rendu
-      </mat-checkbox>
-      <nav>
-
-          <button mat-stroked-button color="primary" (click)="onClickEdit()">EDIT</button>
-
-      </nav>
-
-
-      <button mat-stroked-button color="warn" (click)="onDelete()">DELETE</button>
-    </div>
-  </mat-card> -->
 </div>

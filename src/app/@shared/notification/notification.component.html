@@ -1,10 +1,8 @@
-<div class="d-flex align-items-center justify-content-between">
-    <div [ngStyle]="{'color': snackbarConfig.textColor}">
-        <span>{{ snackbarConfig.icon }} {{data.message}}</span>
-        <div class="float-right">
-            <button mat-icon-button (click)="onCloseSnackbar()">
-                <mat-icon>close</mat-icon>
-            </button>
-        </div>
+<div>
+    <div [ngStyle]="{'color': snackbarConfig.textColor}" style="display: flex; justify-content: space-between; margin-bottom: -15px;">
+        <p>{{data.message}}</p>
+        <mat-icon aria-hidden="false" (click)="onCloseSnackbar()">
+            close
+        </mat-icon>
     </div>
 </div>

@@ -31,7 +31,7 @@ export class AddAssignmentComponent implements OnInit {
         this._snackBar.openFromComponent(NotificationComponent, {
           duration: 4000,
           data: {
-            message: "Assignment ajouté",
+            message: 'Assignment ajouté',
             type: 'success'
           },
           panelClass: ['success-snackbar']
@@ -47,22 +47,6 @@ export class AddAssignmentComponent implements OnInit {
           panelClass: ['error-snackbar']
         });
       });
-
-    // if ((!this.nom) || (!this.dateDeRendu)) return
-
-    // const nouvelAssignment = new Assignment()
-    // nouvelAssignment.nom = this.nom
-    // nouvelAssignment.dateDeRendu = this.dateDeRendu
-    // nouvelAssignment.rendu = false
-
-    // this.assignmentsService.addAssignment(nouvelAssignment)
-    //   // tslint:disable-next-line: deprecation
-    //   .subscribe(reponse => {
-    //     console.log(reponse.message)
-
-    //     // et on navigue vers la page d'accueil qui affiche la liste
-    //     this.router.navigate(['/home'])
-    //   });
   }
 
 }

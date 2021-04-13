@@ -48,8 +48,8 @@
                     <legend><span class="number">2</span> Etudiant </legend>
                     <label for="name">Nom* :</label>
                     <input type="text" id="name" placeholder="Ex. Zayn Malik" formControlName="auteur"
-                        [matAutocomplete]="auto" (change)="selectStudent($event)" required>
-                    <mat-autocomplete #auto="matAutocomplete">
+                        [matAutocomplete]="auto" required>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectStudent($event.option.value)">
                         <mat-option *ngFor="let stud of filteredOptions | async" [value]="stud">
                             {{ stud }}
                         </mat-option>
@@ -85,7 +85,8 @@
         <div class="stepper-form">
             <fieldset>
                 <legend><span class="number">4</span> Confirmation </legend>
-                <p>Vous avez maintenant terminé.</p>
+                <p *ngIf="!errorMessage">Vous avez maintenant terminé.</p>
+                <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
             </fieldset>
             <fieldset>
                 <legend><span class="number">2</span> Devoir </legend>
