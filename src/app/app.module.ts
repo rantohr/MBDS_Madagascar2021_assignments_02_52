@@ -26,6 +26,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { RenduDirective } from './@shared/rendu.directive';
 import { NonRenduDirective } from './@shared/non-rendu.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -116,7 +117,7 @@ const routes: Routes = [
     MatNativeDateModule, MatListModule, MatCheckboxModule, MatTabsModule, MatStepperModule, DragDropModule,
     MatCardModule, MatIconModule, MatFormFieldModule, MatSelectModule, MatDialogModule,
     MatInputModule, MatSlideToggleModule, MatProgressSpinnerModule, MatGridListModule, MatButtonModule,
-    ScrollingModule, MatPaginatorModule,
+    ScrollingModule, MatPaginatorModule, InfiniteScrollModule,
     RouterModule.forRoot(routes), HttpClientModule,
     ReactiveFormsModule,
     AvatarModule

@@ -1,5 +1,5 @@
 import { DataSource, CollectionViewer } from '@angular/cdk/collections';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription, Observable } from 'rxjs';
 import { Assignment } from 'src/app/@core/schema/assignment.model';
 import { AssignmentsService } from 'src/app/@core/service/assignments.service';
@@ -8,65 +8,52 @@ import { AssignmentsService } from 'src/app/@core/service/assignments.service';
   selector: 'app-infinite-scrolling',
   templateUrl: './infinite-scrolling.component.html',
   styleUrls: ['./infinite-scrolling.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InfiniteScrollingComponent {
+export class InfiniteScrollingComponent implements OnInit, OnDestroy {
+
+  assignments: Assignment[]
+  page = 1
+  limit = 15
+
+  @Input() search: string
+  private eventsSubscription: Subscription;
+  @Input() events: Observable<void>;
+
   constructor(protected assignmentsService: AssignmentsService) { }
 
-  ds = new AssignmentsDataSource(this.assignmentsService);
-}
-
-export class AssignmentsDataSource extends DataSource<Assignment | undefined> {
-
-  constructor(protected assignmentsService: AssignmentsService) {
-    super();
+  ngOnInit(): void {
+    this.getAssignments()
+    this.eventsSubscription = this.events.subscribe(() => this.searchSublitted());
   }
 
-  private _pageSize = 15;
-  private _cachedData = [{
-    id: -1,
-    nom: '',
-    dateDeRendu: undefined,
-    rendu: false,
-    matiere: '',
-    auteur: '',
-    note: -1,
-    remarques: ''
-  }]
-  private _fetchedPages = new Set<number>();
-  private _dataStream = new BehaviorSubject<(Assignment | undefined)[]>(this._cachedData);
-  private _subscription = new Subscription();
-
-  connect(collectionViewer: CollectionViewer): Observable<(Assignment | undefined)[]> {
-    this._subscription.add(collectionViewer.viewChange.subscribe(range => {
-      const startPage = this._getPageForIndex(range.start);
-      const endPage = this._getPageForIndex(range.end-1);
-      for (let i = startPage; i <= endPage; i++) {
-        this._fetchPage(i);
-      }
-    }));
-    return this._dataStream;
+  ngOnDestroy() {
+    this.eventsSubscription.unsubscribe();
   }
 
-  disconnect(): void {
-    this._subscription.unsubscribe();
+  getAssignments(): void {
+    this.assignmentsService.getAssignmentsPagine(this.page, this.limit, this.search)
+      .subscribe(data => {
+        this.assignments = data.docs
+        this.page = data.page
+        this.limit = data.limit
+      })
   }
 
-  private _getPageForIndex(index: number): number {
-    return Math.floor(index / this._pageSize);
+  searchSublitted(): void {
+    console.log('this.search', this.search)
+    this.getAssignments()
   }
 
-  private _fetchPage(page: number) {
-    console.log('this._fetchedPages', this._fetchedPages)
-    if (this._fetchedPages.has(page)) {
-      return;
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+      this.page = this.page + 1
+      this.assignmentsService.getAssignmentsPagine(this.page, this.limit, this.search)
+        .subscribe(data => {
+          this.assignments = [...this.assignments, ...data.docs]
+          this.page = data.page
+          this.limit = data.limit
+        })
     }
-    this._fetchedPages.add(page);
-
-    this.assignmentsService.getAssignmentsPagine(page, this._pageSize, undefined).subscribe(results => {
-      if (results && results.docs) {
-        this._dataStream.next(results.docs);
-      }
-    })
   }
 }

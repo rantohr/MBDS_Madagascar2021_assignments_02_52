@@ -62,7 +62,7 @@
       <ng-template mat-tab-label>
         Infinite Scrolling
       </ng-template>
-      <app-infinite-scrolling></app-infinite-scrolling>
+      <app-infinite-scrolling [search]="search" [events]="searchEventsSubject.asObservable()"></app-infinite-scrolling>
     </mat-tab>
 
   </mat-tab-group>

@@ -3,9 +3,9 @@
 }
 
 .grid {
-    display              : grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-column-gap      : 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 10px;
 }
 
 ::-webkit-scrollbar {
@@ -18,4 +18,9 @@
 
 ::-webkit-scrollbar-thumb {
     background-color: #3f51b5;
+}
+
+.search-results {
+    height: 20rem;
+    overflow: scroll;
 }

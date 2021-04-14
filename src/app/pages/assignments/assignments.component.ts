@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { PageEvent } from '@angular/material/paginator'
 import { ActivatedRoute, Router } from '@angular/router'
+import { Subject } from 'rxjs'
 import { Assignment } from 'src/app/@core/schema/assignment.model'
 import { AssignmentsService } from 'src/app/@core/service/assignments.service'
 
@@ -21,6 +22,8 @@ export class AssignmentsComponent implements OnInit {
   hasNextPage: boolean
   nextPage: number
   search: string
+
+  searchEventsSubject: Subject<void> = new Subject<void>();
 
   constructor(
     private assignmentsService: AssignmentsService,
@@ -121,5 +124,6 @@ export class AssignmentsComponent implements OnInit {
 
   submitSearch(): void {
     this.getAssignments()
+    this.searchEventsSubject.next();
   }
 }
