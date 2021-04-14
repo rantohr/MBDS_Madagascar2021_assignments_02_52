@@ -5,16 +5,18 @@
   <mat-divider></mat-divider>
   <br>
 
-  <mat-tab-group>
+  <mat-tab-group (selectedTabChange)="clickTab($event)">
+
     <mat-tab>
       <ng-template mat-tab-label>
-        Non Rendu
-        <mat-icon style="margin-left: 1em;">thumb_down</mat-icon>
+        Tous
+        <mat-icon style="margin-left: 1em;"></mat-icon>
       </ng-template>
       <div class="grid">
         <app-assignment-card *ngFor="let a of assignments" [assignment]="a"></app-assignment-card>
       </div>
-      <mat-paginator [length]="totalDocs" [pageSize]="limit" [pageSizeOptions]="[5, 10, 25, 100]" [showFirstLastButtons]="true" (page)="getServerData($event)">
+      <mat-paginator [length]="totalDocs" [pageSize]="limit" [pageSizeOptions]="[5, 10, 25, 100]"
+        [showFirstLastButtons]="true" (page)="getServerData($event)">
       </mat-paginator>
     </mat-tab>
 
@@ -23,9 +25,26 @@
         Rendu
         <mat-icon style="margin-left: 1em;">thumb_up</mat-icon>
       </ng-template>
-      Aucune données à afficher
+      <div class="grid">
+        <app-assignment-card *ngFor="let a of assignments" [assignment]="a"></app-assignment-card>
+      </div>
+      <mat-paginator [length]="totalDocs" [pageSize]="limit" [pageSizeOptions]="[5, 10, 25, 100]"
+        [showFirstLastButtons]="true" (page)="getServerData($event)">
+      </mat-paginator>
     </mat-tab>
 
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Non Rendu
+        <mat-icon style="margin-left: 1em;">thumb_down</mat-icon>
+      </ng-template>
+      <div class="grid">
+        <app-assignment-card *ngFor="let a of assignments" [assignment]="a"></app-assignment-card>
+      </div>
+      <mat-paginator [length]="totalDocs" [pageSize]="limit" [pageSizeOptions]="[5, 10, 25, 100]"
+        [showFirstLastButtons]="true" (page)="getServerData($event)">
+      </mat-paginator>
+    </mat-tab>
 
     <!-- <mat-tab>
       <ng-template mat-tab-label>

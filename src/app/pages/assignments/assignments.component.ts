@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { PageEvent } from '@angular/material/paginator'
 import { ActivatedRoute, Router } from '@angular/router'
-import { map } from 'rxjs/operators'
 import { Assignment } from 'src/app/@core/schema/assignment.model'
 import { AssignmentsService } from 'src/app/@core/service/assignments.service'
-import { environment } from 'src/environments/environment'
 
 @Component({
   selector: 'app-assignments',
@@ -14,6 +12,7 @@ import { environment } from 'src/environments/environment'
 export class AssignmentsComponent implements OnInit {
   assignments: Assignment[]
   page = 1
+  rendu = undefined
   limit = 10
   totalDocs: number
   totalPages: number
@@ -22,31 +21,23 @@ export class AssignmentsComponent implements OnInit {
   hasNextPage: boolean
   nextPage: number
 
-  // on injecte le service de gestion des assignments
   constructor(
     private assignmentsService: AssignmentsService,
     private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
-    console.log('AVANT AFFICHAGE')
-    // on regarde s'il y a page= et limit = dans l'URL
     this.route.queryParams
-      // tslint:disable-next-line: deprecation
       .subscribe(queryParams => {
-        console.log('Dans le subscribe des queryParams')
         this.page = +queryParams.page || 1
         this.limit = +queryParams.limit || 10
-
+        this.rendu = +queryParams.rendu || undefined
         this.getAssignments()
       })
-    console.log('getAssignments() du service appelé')
   }
 
   getAssignments(): void {
-    // this.assignmentsService.getAssignmentsPagine(this.page, this.limit)
-    this.assignmentsService.getAssignmentsPagine(this.page, this.limit)
-      // tslint:disable-next-line: deprecation
+    this.assignmentsService.getAssignmentsPagine(this.page, this.limit, this.rendu)
       .subscribe(data => {
         this.assignments = data.docs
         this.page = data.page
@@ -57,17 +48,11 @@ export class AssignmentsComponent implements OnInit {
         this.prevPage = data.prevPage
         this.hasNextPage = data.hasNextPage
         this.nextPage = data.nextPage
-        console.log('données reçues')
-        console.log(data.docs)
       })
   }
 
   onDeleteAssignment(event): void {
-    // event = l'assignment à supprimer
-
-    // this.assignments.splice(index, 1)
     this.assignmentsService.deleteAssignment(event)
-      // tslint:disable-next-line: deprecation
       .subscribe(message => {
         console.log(message)
       })
@@ -83,10 +68,6 @@ export class AssignmentsComponent implements OnInit {
   }
 
   pageSuivante(): void {
-    /*
-    this.page = this.nextPage
-    this.getAssignments()
-    */
     this.router.navigate(['/home'], {
       queryParams: {
         page: this.nextPage,
@@ -114,10 +95,25 @@ export class AssignmentsComponent implements OnInit {
   }
 
   getServerData(event?: PageEvent) {
-    console.log('event', event)
     this.page = event.pageIndex + 1
     this.limit = event.pageSize
     this.getAssignments()
     return event;
+  }
+
+  clickTab(event): void {
+    this.assignments = []
+    switch (event.index) {
+      case 1:
+        this.rendu = true
+        break;
+      case 2:
+        this.rendu = false
+        break;
+      default:
+        this.rendu = undefined
+        break;
+    }
+    this.getAssignments()
   }
 }

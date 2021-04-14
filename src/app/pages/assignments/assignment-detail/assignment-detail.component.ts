@@ -36,7 +36,6 @@ export class AssignmentDetailComponent implements OnInit {
     const id = this.route.snapshot.params.id
 
     this.assignmentsService.getAssignment(id)
-      // tslint:disable-next-line: deprecation
       .subscribe((assignment: any) => {
         if (assignment) {
           this.assignmentTransmis = assignment
@@ -53,14 +52,10 @@ export class AssignmentDetailComponent implements OnInit {
 
     this.assignmentsService
       .updateAssignment(this.assignmentTransmis)
-      // tslint:disable-next-line: deprecation
       .subscribe((reponse) => {
         console.log(reponse.message)
-        // et on navigue vers la page d'accueil qui affiche la liste
         this.router.navigate(['/home'])
       });
-
-    // this.assignmentTransmis = null
   }
 
   onDelete(): void {

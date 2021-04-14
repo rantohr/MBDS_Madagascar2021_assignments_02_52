@@ -27,16 +27,16 @@ export class AssignmentsService {
     return this.http.get<Assignment[]>(this.uri + `${urlQueries ? '?' + urlQueries : ''}`)
   }
 
-  getAssignmentsPagine(page: number, limit: number): Observable<any> {
-    return this.http.get<Assignment[]>(this.uri + '?page=' + page + '&limit=' + limit);
+  getAssignmentsPagine(page: number, limit: number, rendu?: boolean): Observable<any> {
+    let renduIntValue = undefined
+    if (rendu === true) renduIntValue = 1
+    if (rendu === false) renduIntValue = 0
+    let url = this.uri + '?page=' + page + '&limit=' + limit + `${renduIntValue !== undefined ? '&rendu=' + renduIntValue : ''}`
+    console.log('url', url)
+    return this.http.get<Assignment[]>(url);
   }
 
-  // Pour votre culture, on peut aussi utiliser httpClient avec une promesse
-  // et then, async, await etc. Mais ce n'est pas la norme chez les developpeurs
-  // Angular
   getAssignmentsAsPromise(): Promise<Assignment[]> {
-    console.log('Dans le service de gestion des assignments...')
-    // return of(this.assignments);
     return this.http.get<Assignment[]>(this.uri).toPromise();
   }
 
@@ -51,12 +51,9 @@ export class AssignmentsService {
       );
   }
 
-  // tslint:disable-next-line: typedef
   private handleError<T>(operation: any, result?: T) {
     return (error: any): Observable<T> => {
-      console.log(error); // pour afficher dans la console
       console.log(operation + ' a échoué ' + error.message);
-
       return of(result as T);
     };
   }
@@ -67,23 +64,11 @@ export class AssignmentsService {
 
   addAssignment(assignment: Assignment): Observable<any> {
     assignment.id = this.generateId();
-    // this.loggingService.log(assignment.nom, " a été ajouté");
-
-    /* this.assignments.push(assignment);
-    return of("Service: assignment ajouté !"); */
-
     return this.http.post(this.uri, assignment);
   }
 
   updateAssignment(assignment: Assignment): Observable<any> {
-    // besoin de ne rien faire puisque l'assignment passé en paramètre
-    // est déjà un élément du tableau
-
-    // let index = this.assignments.indexOf(assignment);
-
-    // console.log("updateAssignment l'assignment passé en param est à la position " + index + " du tableau");
     this.loggingService.log(assignment.nom, ' a été modifié');
-
     return this.http.put(this.uri + '/' + assignment._id, assignment);
   }
 

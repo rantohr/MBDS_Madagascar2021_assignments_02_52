@@ -97,8 +97,10 @@ export class StepperFormComponent implements OnInit {
 
   selectSubject(event): void {
     this.currentSubject = this.subjects.find(e => e._id === event)
-    this.currentSubject.image = `${environment.SERVER_URL}/public/images/${this.currentSubject.image}`;
-    if (this.currentSubject.teacher) this.currentSubject.teacher.image = `${environment.SERVER_URL}/public/images/${this.currentSubject.teacher.image}`;
+    if (!this.currentSubject.image.includes('/public/images/')) {
+      this.currentSubject.image = `${environment.SERVER_URL}/public/images/${this.currentSubject.image}`;
+      if (this.currentSubject.teacher) this.currentSubject.teacher.image = `${environment.SERVER_URL}/public/images/${this.currentSubject.teacher.image}`;
+    }
   }
 
   selectStudent(value): void {

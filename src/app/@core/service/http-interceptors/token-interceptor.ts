@@ -13,19 +13,12 @@ export class TokenInterceptor implements HttpInterceptor {
 
   constructor(private auth: AuthService) { }
 
-  // tslint:disable-next-line: typedef
   intercept(req: HttpRequest<any>, next: HttpHandler): any {
-    // Get the auth token from the service.
     const authToken = this.auth.getAccessToken();
-
     const authReq = this.addTokenToRequest(req, authToken);
-
-    // not intercept login
     if (req.url.includes('/api/auth/login')) {
       return next.handle(req);
     }
-
-    // send cloned request with header to the next handler.
     return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
         console.log('http error...', error);
@@ -38,10 +31,6 @@ export class TokenInterceptor implements HttpInterceptor {
     );
   }
 
-  /**
-   * Clone the request and replace the original headers with
-   * cloned headers, updated with the authorization.
-   */
   private addTokenToRequest(request: HttpRequest<any>, token: string): any {
     return request.clone({
       setHeaders: {

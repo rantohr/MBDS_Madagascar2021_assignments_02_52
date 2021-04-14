@@ -78,7 +78,6 @@ export class LoginComponent implements OnInit {
           });
         } else {
           this.authService.register(this.form.value)
-            // tslint:disable-next-line: deprecation
             .subscribe(
               response => {
                 this._snackBar.openFromComponent(NotificationComponent, {
@@ -105,7 +104,6 @@ export class LoginComponent implements OnInit {
         break;
       default:
         this.authService.login(this.form.value)
-          // tslint:disable-next-line: deprecation
           .subscribe(
             response => {
               this.authService.clearTokens();

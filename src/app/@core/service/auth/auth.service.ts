@@ -39,8 +39,6 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     const token = this.getRefreshToken()
-    // Check whether the refresh token is expired and return
-    // true or false
     return !this.jwtHelper.isTokenExpired(token)
   }
 
