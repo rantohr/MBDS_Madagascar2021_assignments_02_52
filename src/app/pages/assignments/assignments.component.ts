@@ -20,6 +20,7 @@ export class AssignmentsComponent implements OnInit {
   prevPage: number
   hasNextPage: boolean
   nextPage: number
+  search: string
 
   constructor(
     private assignmentsService: AssignmentsService,
@@ -32,12 +33,13 @@ export class AssignmentsComponent implements OnInit {
         this.page = +queryParams.page || 1
         this.limit = +queryParams.limit || 10
         this.rendu = +queryParams.rendu || undefined
+        this.search = queryParams.search || undefined
         this.getAssignments()
       })
   }
 
   getAssignments(): void {
-    this.assignmentsService.getAssignmentsPagine(this.page, this.limit, this.rendu)
+    this.assignmentsService.getAssignmentsPagine(this.page, this.limit, this.search, this.rendu)
       .subscribe(data => {
         this.assignments = data.docs
         this.page = data.page
@@ -114,6 +116,10 @@ export class AssignmentsComponent implements OnInit {
         this.rendu = undefined
         break;
     }
+    this.getAssignments()
+  }
+
+  submitSearch(): void {
     this.getAssignments()
   }
 }

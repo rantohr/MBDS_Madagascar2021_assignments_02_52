@@ -50,7 +50,7 @@ export class StepperFormComponent implements OnInit {
     });
     this.secondFormGroup = this._formBuilder.group({
       auteur: ['', Validators.required],
-      note: [''],
+      note: ['', [Validators.min(0), Validators.max(20)]],
       remarques: [''],
       dateDeRendu: ['', Validators.required]
     });
@@ -84,7 +84,6 @@ export class StepperFormComponent implements OnInit {
     this._usersService.getStudents().subscribe(s => {
       if (s) {
         this.students = s
-        console.log('this.students', this.students)
         this.studentNames = this.students.map(e => e.name)
       }
     })

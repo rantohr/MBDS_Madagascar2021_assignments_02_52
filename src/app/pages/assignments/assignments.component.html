@@ -1,7 +1,19 @@
 <app-navbar></app-navbar>
 <main class="container">
   <br>
-  <h1>Liste des assignments</h1>
+  <div style="display: flex; justify-content: space-between;">
+    <h1>Liste des assignments</h1>
+    <mat-form-field style="width: 200px;">
+      <mat-label>Recherche</mat-label>
+      <input matInput type="text" [(ngModel)]="search" (keyup.enter)="submitSearch()">
+      <button mat-button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="search=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <button mat-button matSuffix mat-icon-button aria-label="search" (click)="submitSearch()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
   <mat-divider></mat-divider>
   <br>
 
@@ -46,12 +58,12 @@
       </mat-paginator>
     </mat-tab>
 
-    <!-- <mat-tab>
+    <mat-tab>
       <ng-template mat-tab-label>
         Infinite Scrolling
       </ng-template>
       <app-infinite-scrolling></app-infinite-scrolling>
-    </mat-tab> -->
+    </mat-tab>
 
   </mat-tab-group>
 </main>

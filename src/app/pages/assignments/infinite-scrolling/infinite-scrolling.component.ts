@@ -63,7 +63,7 @@ export class AssignmentsDataSource extends DataSource<Assignment | undefined> {
     }
     this._fetchedPages.add(page);
 
-    this.assignmentsService.getAssignmentsPagine(page+1, this._pageSize).subscribe(results => {
+    this.assignmentsService.getAssignmentsPagine(page, this._pageSize, undefined).subscribe(results => {
       if (results && results.docs) {
         this._dataStream.next(results.docs);
       }

@@ -27,11 +27,11 @@ export class AssignmentsService {
     return this.http.get<Assignment[]>(this.uri + `${urlQueries ? '?' + urlQueries : ''}`)
   }
 
-  getAssignmentsPagine(page: number, limit: number, rendu?: boolean): Observable<any> {
+  getAssignmentsPagine(page: number, limit: number, search: string, rendu?: boolean): Observable<any> {
     let renduIntValue = undefined
     if (rendu === true) renduIntValue = 1
     if (rendu === false) renduIntValue = 0
-    let url = this.uri + '?page=' + page + '&limit=' + limit + `${renduIntValue !== undefined ? '&rendu=' + renduIntValue : ''}`
+    let url = this.uri + '?page=' + page + '&limit=' + limit + `${search !== undefined ? '&search=' + search : ''}` + `${renduIntValue !== undefined ? '&rendu=' + renduIntValue : ''}`
     console.log('url', url)
     return this.http.get<Assignment[]>(url);
   }

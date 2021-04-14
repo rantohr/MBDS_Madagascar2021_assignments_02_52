@@ -61,7 +61,7 @@
                     <input type="date" formControlName="dateDeRendu" id="date">
 
                     <label for="mark">Note (/20) :</label>
-                    <input id="mark" type="number" step="1" formControlName="note">
+                    <input id="mark" type="number" max="20" min="0" step="1" formControlName="note">
 
                     <label for="note">Remarque :</label>
                     <textarea matInput id="note" cols="3" rows="3" formControlName="remarques"></textarea>
