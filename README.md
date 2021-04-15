@@ -12,8 +12,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 Projet Angular et Node MBDS Madagascar 2021
 
 ### Développeurs
