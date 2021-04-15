@@ -22,7 +22,6 @@ export class AppComponent {
     this.assignmentsService.peuplerBDAvecForkJoin()
       // tslint:disable-next-line: deprecation
       .subscribe(() => {
-        console.log('LA BD A ETE PEUPLEE, TOUS LES ASSIGNMENTS AJOUTES, ON RE-AFFICHE LA LISTE')
         this.router.navigate(['/home'], { replaceUrl: true })
       })
   }

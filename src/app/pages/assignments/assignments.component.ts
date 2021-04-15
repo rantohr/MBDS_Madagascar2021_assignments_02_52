@@ -110,10 +110,10 @@ export class AssignmentsComponent implements OnInit {
     this.assignments = []
     switch (event.index) {
       case 1:
-        this.rendu = true
+        this.rendu = false
         break;
       case 2:
-        this.rendu = false
+        this.rendu = true
         break;
       default:
         this.rendu = undefined

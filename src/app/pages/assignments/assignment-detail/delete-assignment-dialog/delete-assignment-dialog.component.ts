@@ -14,12 +14,10 @@ export class DeleteAssignmentDialogComponent implements OnInit {
   }
 
   submit(): void {
-    console.log('delete')
     this.dialogRef.close(this.data);
   }
 
   close(): void {
-    console.log('close')
     this.dialogRef.close();
   }
 

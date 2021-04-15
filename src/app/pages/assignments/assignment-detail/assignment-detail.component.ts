@@ -18,6 +18,7 @@ export class AssignmentDetailComponent implements OnInit {
   serverPublicUrl = `${environment.SERVER_URL}/public/images/`
   imageProf: string
   imageMatiere: string
+  isStudent = false
 
   constructor(
     private assignmentsService: AssignmentsService,
@@ -26,10 +27,12 @@ export class AssignmentDetailComponent implements OnInit {
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private _errorMessageHandler: ErrorMessageHandler,
+    private _authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.getAssignmentById()
+    if (this._authService.getLoggedUserRole() && this._authService.getLoggedUserRole() == 'etudiant') this.isStudent = true
   }
 
   getAssignmentById(): void {
@@ -53,7 +56,6 @@ export class AssignmentDetailComponent implements OnInit {
     this.assignmentsService
       .updateAssignment(this.assignmentTransmis)
       .subscribe((reponse) => {
-        console.log(reponse.message)
         this.router.navigate(['/home'])
       });
   }
@@ -63,7 +65,6 @@ export class AssignmentDetailComponent implements OnInit {
       data: this.assignmentTransmis
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result`, result);
       if (result) {
         this.assignmentsService.deleteAssignment(result._id)
           .subscribe(response => {

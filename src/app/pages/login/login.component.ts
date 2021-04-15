@@ -108,6 +108,7 @@ export class LoginComponent implements OnInit {
             response => {
               this.authService.clearTokens();
               this.authService.storeTokens(response.accessToken, response.refreshToken);
+              this.authService.storeLoggedUserRole(response.body?.role);
               this.router.navigate(['/home'])
             }, error => {
               console.log('error', error)

@@ -19,7 +19,6 @@ export class AssignmentCardComponent implements OnInit {
   }
 
   openDetail(): void {
-    console.log('element', this.assignment._id)
     this.router.navigateByUrl(`/assignment/${this.assignment._id}`);
   }
 }

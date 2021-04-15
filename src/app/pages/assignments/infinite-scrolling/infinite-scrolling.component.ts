@@ -40,7 +40,6 @@ export class InfiniteScrollingComponent implements OnInit, OnDestroy {
   }
 
   searchSublitted(): void {
-    console.log('this.search', this.search)
     this.getAssignments()
   }
 

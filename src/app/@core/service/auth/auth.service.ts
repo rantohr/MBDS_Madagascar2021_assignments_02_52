@@ -50,6 +50,10 @@ export class AuthService {
     return localStorage.getItem('refresh-token')
   }
 
+  getLoggedUserRole(): any {
+    return localStorage.getItem('user-role')
+  }
+
   storeTokens(access: string, refresh?: string): void {
     localStorage.setItem('access-token', access)
     if (refresh) {
@@ -57,8 +61,13 @@ export class AuthService {
     }
   }
 
+  storeLoggedUserRole(role: string): void {
+    localStorage.setItem('user-role', role)
+  }
+
   clearTokens(): void {
     localStorage.removeItem('access-token')
     localStorage.removeItem('refresh-token')
+    localStorage.removeItem('user-role')
   }
 }

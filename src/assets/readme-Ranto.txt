@@ -48,7 +48,8 @@ Utilisation en locale:
 Accès:
 	.étudiant:
 		=> ex: 
-			.email: etu@nice.fr
+			.nom: Vickie Cruickshank
+			.email: Hilton.Collins37@hotmail.com
 			.mot de passe: azerty
 		.accès à ses assignments et à les rendre
 		

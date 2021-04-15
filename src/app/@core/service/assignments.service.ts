@@ -5,6 +5,7 @@ import { catchError, filter, map, tap } from 'rxjs/operators';
 import { assignmentsGeneres } from 'src/app/@shared/data';
 import { environment } from '../../../environments/environment';
 import { Assignment } from '../schema/assignment.model';
+import { AuthService } from './auth/auth.service';
 import { LoggingService } from './logging.service';
 
 @Injectable({
@@ -13,7 +14,8 @@ import { LoggingService } from './logging.service';
 export class AssignmentsService {
   assignments: Assignment[]
 
-  constructor(private loggingService: LoggingService, private http: HttpClient) { }
+  constructor(private loggingService: LoggingService, private http: HttpClient,
+    private authService: AuthService) { }
 
   uri = `${environment.SERVER_URL}/api/assignments`
 
@@ -31,8 +33,8 @@ export class AssignmentsService {
     let renduIntValue = undefined
     if (rendu === true) renduIntValue = 1
     if (rendu === false) renduIntValue = 0
-    let url = this.uri + '?page=' + page + '&limit=' + limit + `${search !== undefined ? '&search=' + search : ''}` + `${renduIntValue !== undefined ? '&rendu=' + renduIntValue : ''}`
-    console.log('url', url)
+    const query = '?page=' + page + '&limit=' + limit + `${search !== undefined ? '&search=' + search : ''}` + `${renduIntValue !== undefined ? '&rendu=' + renduIntValue : ''}`
+    let url = (this.authService.getLoggedUserRole() && this.authService.getLoggedUserRole() == 'etudiant') ? this.uri + '/student' + query : this.uri + query
     return this.http.get<Assignment[]>(url);
   }
 

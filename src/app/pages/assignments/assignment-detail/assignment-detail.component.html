@@ -12,10 +12,12 @@
       <div class="card-detail-content">
         <div class="card-detail-title">
           {{ assignmentTransmis.nom }}
-          <button mat-mini-fab color="primary" aria-label="edit" class="transparent-button" (click)="onClickEdit()">
+          <button *ngIf="!isStudent" mat-mini-fab color="primary" aria-label="edit" class="transparent-button"
+            (click)="onClickEdit()">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-mini-fab color="warn" aria-label="delete" class="transparent-button" (click)="onDelete()">
+          <button *ngIf="!isStudent" mat-mini-fab color="warn" aria-label="delete" class="transparent-button"
+            (click)="onDelete()">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
@@ -24,6 +26,9 @@
         <h5 class="divider line razor" contenteditable>Note</h5>
         <div class="card-detail-text">
           <b>Elève : </b> {{ assignmentTransmis?.auteur?.name }}
+        </div>
+        <div class="card-detail-text">
+          <b>Email : </b> {{ assignmentTransmis?.auteur?.email }}
         </div>
 
         <div class="card-detail-text" style="display: flex;" *ngIf="assignmentTransmis.note">

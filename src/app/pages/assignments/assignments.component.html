@@ -34,8 +34,8 @@
 
     <mat-tab>
       <ng-template mat-tab-label>
-        Rendu
-        <mat-icon style="margin-left: 1em;">thumb_up</mat-icon>
+        Non Rendu
+        <mat-icon style="margin-left: 1em;">thumb_down</mat-icon>
       </ng-template>
       <div class="grid">
         <app-assignment-card *ngFor="let a of assignments" [assignment]="a"></app-assignment-card>
@@ -47,8 +47,8 @@
 
     <mat-tab>
       <ng-template mat-tab-label>
-        Non Rendu
-        <mat-icon style="margin-left: 1em;">thumb_down</mat-icon>
+        Rendu
+        <mat-icon style="margin-left: 1em;">thumb_up</mat-icon>
       </ng-template>
       <div class="grid">
         <app-assignment-card *ngFor="let a of assignments" [assignment]="a"></app-assignment-card>
@@ -57,6 +57,8 @@
         [showFirstLastButtons]="true" (page)="getServerData($event)">
       </mat-paginator>
     </mat-tab>
+
+
 
     <mat-tab>
       <ng-template mat-tab-label>

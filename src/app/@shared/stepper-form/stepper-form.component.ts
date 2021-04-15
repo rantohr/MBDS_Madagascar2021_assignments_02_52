@@ -104,7 +104,6 @@ export class StepperFormComponent implements OnInit {
 
   selectStudent(value): void {
     this.selectedStudent = undefined
-    console.log('value', value)
     this.errorMessage = undefined
     // const auteurName = this.secondFormGroup.get('auteur').value
     const auteurName = value
