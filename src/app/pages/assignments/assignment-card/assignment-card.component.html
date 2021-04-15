@@ -6,7 +6,7 @@
     <mat-card-content>
         <h4>{{ assignment.nom }}</h4>
         <div>
-            <span class="material-icons">
+            <span class="material-icons" *ngIf="assignment.dateDeRendu">
                 event
             </span> <i>{{ assignment.dateDeRendu | date }}</i>
         </div>
