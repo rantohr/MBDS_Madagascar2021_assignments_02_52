@@ -1,4 +1,4 @@
-<mat-card class="assignment-card" *ngIf="assignment && assignment.id !== -1" cdkDrag>
+<mat-card class="assignment-card" *ngIf="assignment && assignment.id !== -1">
     <img mat-card-image [src]="assignment?.matiere?.image ? serverPublicUrl+assignment?.matiere?.image : ''" alt="matière">
     <ngx-avatar class="teacher-avatar"
         [src]="assignment?.matiere?.teacher?.image ? serverPublicUrl+assignment?.matiere?.teacher?.image : ''" size="100">

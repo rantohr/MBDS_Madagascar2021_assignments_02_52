@@ -51,6 +51,8 @@ import { StepperFormComponent } from './@shared/stepper-form/stepper-form.compon
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteAssignmentDialogComponent } from './pages/assignments/assignment-detail/delete-assignment-dialog/delete-assignment-dialog.component';
 import { InfiniteScrollingComponent } from './pages/assignments/infinite-scrolling/infinite-scrolling.component';
+import { DragAndDropComponent } from './pages/assignments/drag-and-drop/drag-and-drop.component';
+import { UpdateDialogComponent } from './pages/assignments/drag-and-drop/update-dialog/update-dialog.component';
 
 const routes: Routes = [
   {
@@ -106,7 +108,9 @@ const routes: Routes = [
     AssignmentCardComponent,
     StepperFormComponent,
     DeleteAssignmentDialogComponent,
-    InfiniteScrollingComponent
+    InfiniteScrollingComponent,
+    DragAndDropComponent,
+    UpdateDialogComponent
   ],
   imports: [
     CommonModule,

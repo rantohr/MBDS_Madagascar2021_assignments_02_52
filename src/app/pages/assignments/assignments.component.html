@@ -34,31 +34,10 @@
 
     <mat-tab>
       <ng-template mat-tab-label>
-        Non Rendu
-        <mat-icon style="margin-left: 1em;">thumb_down</mat-icon>
+        Non Rendu & Rendu
       </ng-template>
-      <div class="grid">
-        <app-assignment-card *ngFor="let a of assignments" [assignment]="a"></app-assignment-card>
-      </div>
-      <mat-paginator [length]="totalDocs" [pageSize]="limit" [pageSizeOptions]="[5, 10, 25, 100]"
-        [showFirstLastButtons]="true" (page)="getServerData($event)">
-      </mat-paginator>
+      <app-drag-and-drop [search]="search" [events]="searchEventsSubject.asObservable()"></app-drag-and-drop>
     </mat-tab>
-
-    <mat-tab>
-      <ng-template mat-tab-label>
-        Rendu
-        <mat-icon style="margin-left: 1em;">thumb_up</mat-icon>
-      </ng-template>
-      <div class="grid">
-        <app-assignment-card *ngFor="let a of assignments" [assignment]="a"></app-assignment-card>
-      </div>
-      <mat-paginator [length]="totalDocs" [pageSize]="limit" [pageSizeOptions]="[5, 10, 25, 100]"
-        [showFirstLastButtons]="true" (page)="getServerData($event)">
-      </mat-paginator>
-    </mat-tab>
-
-
 
     <mat-tab>
       <ng-template mat-tab-label>
