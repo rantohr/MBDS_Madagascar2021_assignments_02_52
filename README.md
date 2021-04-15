@@ -85,7 +85,7 @@ Projet Angular et Node MBDS Madagascar 2021
 2. Prof:
 	* Ex: 
 		* Email: admin@admin.com
-		* Mot de passe: adminpass
+		* Mot de passe: administrator
 	* Accès à toutes les fonctionnalités
 	
 ## Collections:
