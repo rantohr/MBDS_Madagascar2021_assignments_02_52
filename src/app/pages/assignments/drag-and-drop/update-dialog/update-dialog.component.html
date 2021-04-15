@@ -1,6 +1,6 @@
 <h2>Note</h2>
 <p>Noter l'assignment</p>
-<input matInput type="number" min="0" max="20" step="1" [(ngModel)]="note" required>
+<input class="note-input" matInput type="number" min="0" max="20" step="1" [(ngModel)]="note" required>
 <div style="display: flex; justify-content: flex-end;">
     <button class="custum-dialog-button" (click)="close()">Retour</button>
     <button style="margin-left: 1em;" class="custum-dialog-button custum-dialog-button-2" (click)="submit()">Valider</button>

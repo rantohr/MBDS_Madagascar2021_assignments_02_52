@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
-import { Assignment } from 'src/app/@core/schema/assignment.model';
 import { AssignmentsService } from 'src/app/@core/service/assignments.service';
 import { AuthService } from 'src/app/@core/service/auth/auth.service';
 import { ErrorMessageHandler } from 'src/app/@core/service/error-message-handler';
@@ -68,13 +67,15 @@ export class DragAndDropComponent implements OnInit {
           event.previousIndex,
           event.currentIndex);
 
-        const assTransmis = event.previousContainer.data[event.previousIndex]
+        const assTransmis: any = event.container.data[event.currentIndex]
+        console.log('assTransmis', assTransmis.nom);
+
         const dialogRef = this.dialog.open(UpdateDialogComponent, {
           data: assTransmis
         });
         dialogRef.afterClosed().subscribe(result => {
           if (result) {
-            console.log('result', result)
+            console.log('result', result._id)
             this.assignmentsService.updateAssignment(result)
               .subscribe(response => {
                 this._snackBar.openFromComponent(NotificationComponent, {
