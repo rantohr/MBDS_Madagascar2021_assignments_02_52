@@ -1,40 +1,39 @@
 /* DRAG & DROP */
 .dd-container {
     /* width         : 400px; */
-    max-width     : 100%;
-    margin        : 0 25px 25px 0;
-    display       : inline-block;
+    max-width: 100%;
+    margin: 0 25px 25px 0;
+    display: inline-block;
     vertical-align: top;
 }
 
 .dd-list {
-    border       : solid 1px #ccc;
-    min-height   : 60px;
-    background   : white;
+    border: solid 1px #ccc;
+    min-height: 60px;
+    background: white;
     border-radius: 4px;
-    overflow     : hidden;
-    display      : block;
+    overflow: hidden;
+    display: block;
 }
 
 .dd-box {
-    padding        : 20px 10px;
-    border-bottom  : solid 1px #ccc;
-    color          : rgba(0, 0, 0, 0.87);
-    display        : flex;
-    flex-direction : row;
-    align-items    : center;
+    padding: 20px 10px;
+    border-bottom: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
-    box-sizing     : border-box;
-    cursor         : move;
-    background     : white;
-    font-size      : 14px;
+    box-sizing: border-box;
+    cursor: move;
+    background: white;
+    font-size: 14px;
 }
 
 .cdk-drag-preview {
-    box-sizing   : border-box;
+    box-sizing: border-box;
     border-radius: 4px;
-    box-shadow   : 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-        0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
@@ -55,6 +54,6 @@
 }
 
 .drop-panel {
-    width     : 400px;
+    width: 400px;
     margin-top: 40px;
 }

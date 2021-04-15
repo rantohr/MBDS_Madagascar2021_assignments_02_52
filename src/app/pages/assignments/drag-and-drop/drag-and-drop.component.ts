@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
   templateUrl: './drag-and-drop.component.html',
   styleUrls: ['./drag-and-drop.component.css']
 })
-export class DragAndDropComponent implements OnInit {
+export class DragAndDropComponent implements OnInit, OnDestroy {
 
   assignments = []
 
@@ -28,7 +28,8 @@ export class DragAndDropComponent implements OnInit {
   done = [
   ];
 
-  constructor(protected assignmentsService: AssignmentsService,
+  constructor(
+    protected assignmentsService: AssignmentsService,
     private router: Router,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
@@ -37,6 +38,11 @@ export class DragAndDropComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAssignments()
+    this.eventsSubscription = this.events.subscribe(() => this.searchSublitted());
+  }
+
+  ngOnDestroy() {
+    this.eventsSubscription.unsubscribe();
   }
 
   getAssignments(): void {
@@ -52,7 +58,16 @@ export class DragAndDropComponent implements OnInit {
   }
 
   searchSublitted(): void {
-    this.getAssignments()
+    this.page = 1
+    this.assignmentsService.getAssignmentsPagine(this.page, this.limit, this.search, false)
+      .subscribe(data => {
+        this.assignments = data.docs
+      })
+
+    this.assignmentsService.getAssignmentsPagine(this.page, this.limit, this.search, true)
+      .subscribe(data => {
+        this.done = data.docs
+      })
   }
 
   drop(event: CdkDragDrop<string[]>) {

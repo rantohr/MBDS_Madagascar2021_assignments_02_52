@@ -1,15 +1,16 @@
-<div cdkDropListGroup>
+<div cdkDropListGroup style="margin-top: 2em; display: flex; justify-content: space-around;">
+    
     <div class="dd-container">
-        <p>*faites glisser vers la droite pour rendre l'assignment</p>
-
-        <div cdkDropList [cdkDropListData]="assignments" class="dd-list">
+        <h3>Non Rendu</h3>
+        <div cdkDropList [cdkDropListData]="assignments" class="dd-list" style="border: solid 2px red;">
             <app-assignment-card *ngFor="let a of assignments" [assignment]="a" class="dd-box" cdkDrag>
             </app-assignment-card>
         </div>
     </div>
 
-    <div class="dd-container drop-panel">
-        <div cdkDropList [cdkDropListData]="done" class="dd-list" (cdkDropListDropped)="drop($event)">
+    <div class="dd-container">
+        <h3>Rendu</h3>
+        <div cdkDropList [cdkDropListData]="done" class="dd-list" (cdkDropListDropped)="drop($event)" style="border: solid 2px cornflowerblue">
             <h2 *ngIf="!done.length" style="opacity: 0.6;">Déposer un assignment ici</h2>
             <app-assignment-card *ngFor="let a of done" [assignment]="a" class="dd-box"></app-assignment-card>
         </div>
