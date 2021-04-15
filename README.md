@@ -76,17 +76,17 @@ Projet Angular et Node MBDS Madagascar 2021
 ## Accès:
 
 1. Etudiant:
-	Ex: 
+	* Ex: 
 		* Nom: Vickie Cruickshank
 		* Email: Hilton.Collins37@hotmail.com
 		* Mot de passe: azerty
-	Accès à ses assignments et à les rendre
+	* Accès à ses assignments et à les rendre
 	
 2. Prof:
-	Ex: 
+	* Ex: 
 		* Email: admin@admin.com
 		* Mot de passe: adminpass
-	Accès à toutes les fonctionnalités
+	* Accès à toutes les fonctionnalités
 	
 ## Collections:
 
@@ -102,11 +102,11 @@ Projet Angular et Node MBDS Madagascar 2021
 2. Structure des dossiers:
 	* public
 	* src
-		.environments
-		.middlewares
-		.models
-		.routes
-		.utils
+		* environments
+		* middlewares
+		* models
+		* routes
+		* utils
 	* index.ts
 	* server.ts
 	
@@ -134,16 +134,16 @@ Projet Angular et Node MBDS Madagascar 2021
 
 2. Structure des dossiers:
 	* src
-		.assets
-		.environments
-		.app
-			.@core
-				.schema
-				.service
-			.@shared
-			.pages
-				.assignments
-				.login
+		* assets
+		* environments
+		* app
+			* @core
+				* schema
+				* service
+			* @shared
+			* pages
+				* assignments
+				* login
 	
 3. Pages disponibles:
 	* login & register
