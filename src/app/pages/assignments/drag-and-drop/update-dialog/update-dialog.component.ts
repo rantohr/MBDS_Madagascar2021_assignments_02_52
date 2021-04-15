@@ -16,7 +16,9 @@ export class UpdateDialogComponent implements OnInit {
   }
 
   submit(): void {
-    if (this.note && this.note >= 0 && this.note <= 20) this.dialogRef.close({ ...this.data, rendu: true, note: this.note, dateDeRendu: new Date() });
+    if (this.note && this.note >= 0 && this.note <= 20) {
+      this.dialogRef.close({ ...this.data, rendu: true, note: this.note, dateDeRendu: new Date() });
+    }
   }
 
   close(): void {
